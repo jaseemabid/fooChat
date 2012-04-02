@@ -1,10 +1,10 @@
 # A couchDB based real time chat system.
 
-## [Code](https://github.com/jaseemabid/fooChat/)
+* [Code](https://github.com/jaseemabid/fooChat/)
 
-## [Wiki](https://github.com/jaseemabid/fooChat/Wiki)
+* [Wiki](https://github.com/jaseemabid/fooChat/Wiki)
 
-## Authors
+* Authors
 
 	Jaseem Abid <jaseemabid@gmail.com>
 
