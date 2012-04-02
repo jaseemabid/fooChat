@@ -7,5 +7,4 @@
 * Authors
 
 	Jaseem Abid <jaseemabid@gmail.com>
-
 	Irene George <irenegeorge91@gmail.com>
