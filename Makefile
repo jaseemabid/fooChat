@@ -12,7 +12,7 @@ JS_LIBS = ${SRC_DIR}/jquery-1.7.1.min.js \
 	${SRC_DIR}/less-1.2.1.min.js \
 	${SRC_DIR}/bootstrap.min.js
 
-BASE_FILES = ${SRC_DIR}/models.js \
+BASE_FILES = ${SRC_DIR}/core.js \
 	${SRC_DIR}/models.js
 
 MODULES = ${JS_LIBS}\
