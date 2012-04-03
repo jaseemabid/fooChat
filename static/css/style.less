@@ -6,12 +6,117 @@
 }
 
 body {
+
+	@lightGray : #fffff;
+	@bodyBG : #fffff;
+	@minHeight : 500px;
+
 	font-family: 'Droid Sans', sans-serif;
-	section {
-		padding-top:40px;
+	background-color:@bodyBG;
+	min-height: @minHeight;
+
+	div.container-fluid {
 	}
-	
-	div#last-update {
-		font-size:36px;
+
+	div#topBar {
+		border-radius:5px;
+		border: 1px solid #efefef;
+		margin:3px 0px 4px;
+
+		.welcome {
+			padding-left:20px;
+			padding-top:5px;
+		}
+
+		button {
+			display: inline-block;
+			margin:-30px 15px 10px 0px;
+		}
+
 	}
+
+	div#sideBar {
+		background-color : @lightGray;
+		min-height:@minHeight;
+		border-radius:5px;
+
+		#contactsList a {
+			border-style: solid;
+			border-color: #DDD;
+			border-width: 0 0 1px 0;
+			margin-bottom:5px;
+		}
+
+		div.contact {
+			padding:5px 0px 5px 25px;
+			margin-bottom: 2px;
+		}
+
+		.search-query {
+			width:230px;
+		}
+
+
+	}
+
+	div#messageBox {
+		background-color : @lightGray;
+		min-height:@minHeight;
+		border-radius:5px;
+
+		div.messageBox {
+			width:100%;
+			padding-left:10px;
+			padding-right:0px;
+			margin:5px 0px;
+			position:relative;
+			min-height:30px;
+
+			time {
+				position:absolute;
+				bottom:2px;
+				right:5px;
+				font-size:12px;
+				font-style:italic;
+				display:block;
+				padding-bottom:3px;
+			}
+
+			.avatar {
+				background-color:#555555;
+				position:absolute;
+				top:5px;
+				right:5px;
+				width:40px;
+				height:40px;
+			}
+
+
+			div.message {
+				margin-top:5px;
+				width : 80%;
+			}
+
+			div.selfMessage {
+				width : 80%;
+				margin-left:40px;
+			}
+
+			div.avatar {
+				.avatar;
+			}
+
+			div.selfAvatar {
+				.avatar;
+				left:5px;
+			}
+
+		}
+
+		textarea {
+			width:100%;
+		}
+
+	}
+
 }
