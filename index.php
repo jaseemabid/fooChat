@@ -13,6 +13,14 @@
 	<body>
 
 
+		<script id="template-contact" type="text/template">  
+			<a href="#">
+				<img class="avatar" src="http://www.gravatar.com/avatar/{hash}?s=30" />
+				<span class="name">{fullName}</span>
+			</a>
+		</script>
+
+
 
 		<div class="container-fluid">
 
@@ -25,7 +33,6 @@
 			<div class="row-fluid">
 				<div class="span3" id="sideBar">
 					<ul class="nav nav-tabs nav-stacked" id="contactsList">
-						<li> <a href="#">Jaseem Abid </a> </li>
 						<li> <a href="#">Addy singh </a> </li>
 						<li> <a href="#">foo </a> </li>
 						<li> <a href="#">bar </a> </li>
@@ -76,6 +83,6 @@
 		</div>
 
 
-		<script src="static/js/foochat.min.js"></script>
+		<script src="static/js/foochat.js"></script>
 	</body>
 </html>
