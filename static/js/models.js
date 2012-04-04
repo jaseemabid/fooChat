@@ -10,6 +10,7 @@ fooChat.Models = {
 			fullName : "fooBar",
 			hash: "fooBar"
 		},
+		idAttribute: "_id",
 		initialize: function () {
 			console.log("New Contact model");
 		}
