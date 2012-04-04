@@ -18,8 +18,13 @@
 		</script>
 
 		<script id="template-message" type="text/template">
-			<time>{timestamp}</time><div class="message">{msg}</div>
+			<time class="timeago" datetime="{timestamp}">{timestamp}</time><div class="message">{msg}</div>
 			<div class="avatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
+		</script>
+
+		<script id="template-message-self" type="text/template">
+			<time class="timeago" datetime="{timestamp}">{timestamp}</time><div class="selfMessage">{msg}</div>
+			<div class="selfAvatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
 		</script>
 
 		<div class="container-fluid">
@@ -41,39 +46,6 @@
 				</div>
 				<div class="span4" id="messageBox">
 					<!--Body content-->
-					<div class="well messageBox">
-						<time>5 minutes ago</time>
-						<div class="message">
-							foobar new mesage foobar new mesage
-						</div>
-						<div class="avatar">
-							<img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
-						</div>
-					</div>
-
-
-					<div class="well messageBox">
-						<time>2 minutes ago</time>
-						<div class="message">
-							foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage foobar new mesage
-						</div>
-						<div class="avatar">
-							<img src="http://www.gravatar.com/avatar/3f82922e82d1a0c164a5caa909fa0ac5" />
-						</div>
-					</div>
-
-
-					<div class="well messageBox">
-						<time>few seconds ago</time>
-						<div class="selfMessage">
-							foobar new mesage foobar new mesage
-						</div>
-						<div class="selfAvatar">
-							<img src="http://www.gravatar.com/avatar/40901f06ff8e7bb58e200630c613d647" />
-						</div>
-					</div>
-
-
 					<textarea class="input-xlarge" id="newMessage" rows="3" ></textarea>
 				</div>
 			</div>
