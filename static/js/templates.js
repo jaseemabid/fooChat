@@ -1,6 +1,6 @@
 /*!
  * Templates go here.
- * 
+ *
 */
 
 fooChat.template = {

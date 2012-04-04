@@ -3,9 +3,11 @@
 */
 
 (function ($) {
+	"use strict";
 	$(document).ready(function () {
-		var contactList = new fooChat.Collections.ContactCollection();
-		contactList.fetch();
+
+		var App = new fooChat.Views.AppView();
+
 	});
 
 }(jQuery));

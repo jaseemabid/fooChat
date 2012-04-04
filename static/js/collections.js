@@ -3,7 +3,7 @@
  */
 
 fooChat.Collections = {
-	ContactCollection: Backbone.Collection.extend({
+	ContactList: Backbone.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Contact,
 		url: '/couch/users/_design/contacts/_view/byUsername?key="irene"',
@@ -13,6 +13,4 @@ fooChat.Collections = {
 	})
 };
 
-fooChat.Collections.ContactCollection.bind("add", function (contact) {
-	console.log("fullName " + contact.get("fullName") + ' && hash : ' + contact.get("hash"));
-});
+var Contacts = new fooChat.Collections.ContactList();

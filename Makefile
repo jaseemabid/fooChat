@@ -15,8 +15,9 @@ JS_LIBS = ${SRC_DIR}/jquery-1.7.1.min.js \
 BASE_FILES = ${SRC_DIR}/core.js \
 	${SRC_DIR}/templates.js \
 	${SRC_DIR}/models.js \
-	${SRC_DIR}/views.js \
-	${SRC_DIR}/collections.js
+	${SRC_DIR}/collections.js \
+	${SRC_DIR}/views.js
+
 
 MODULES = ${JS_LIBS}\
 	${SRC_DIR}/intro.js\

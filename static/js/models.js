@@ -11,10 +11,6 @@ fooChat.Models = {
 			hash: "fooBar"
 		},
 		initialize: function () {
-			console.log("New Contact model");
 		}
 	})
 };
-
-
-
