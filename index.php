@@ -12,15 +12,15 @@
 	</head>
 	<body>
 
-
 		<script id="template-contact" type="text/template">
-			<a href="#">
-				<img class="avatar" src="http://www.gravatar.com/avatar/{hash}?s=30" />
-				<span class="name">{fullName}</span>
-			</a>
+			<a href="#"><img class="avatar" src="http://www.gravatar.com/avatar/{hash}" />
+			<span class="name">{fullName}</span></a>
 		</script>
 
-
+		<script id="template-message" type="text/template">
+			<time>{timestamp}</time><div class="message">{msg}</div>
+			<div class="avatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
+		</script>
 
 		<div class="container-fluid">
 
