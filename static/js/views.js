@@ -34,6 +34,22 @@ fooChat.Views = {
 			this.model.bind('destroy', this.remove, this);
 		}
 	}),
+	AddContactView : Backbone.View.extend({
+		el : $('input#newContact'),
+		tagName: "div",
+		events : {
+			"keypress" : "addContact"
+		},
+		initialize: function () {
+		},
+		addContact : function(e) {
+			console.log(e.keyCode);
+			console.log(this.$el.val());
+			if (e.keyCode != 13) return;
+			if (! this.$el.val()) return;
+			Contacts.create({fullName: this.$el.val()});
+		}
+	}),
 	AppView : Backbone.View.extend({
 		initialize: function () {
 
@@ -41,6 +57,8 @@ fooChat.Views = {
 			Contacts.bind('reset', this.addAllContact, this);
 			Contacts.bind('all', this.render, this);
 			Contacts.fetch();
+
+			var addContactInput = new fooChat.Views.AddContactView();
 
 			Messages.bind('add', this.addOneMessage, this);
 			Messages.bind('reset', this.addAllMessage, this);
