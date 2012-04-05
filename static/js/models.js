@@ -21,10 +21,12 @@ fooChat.Models = {
 			// Ensure that each photo created has an `src`.
 			msg : "fooBar message",
 			from: "chatBot",
-			hash: "40901f06ff8e7bb58e200630c613d647",
+			hash: "00000000000000000000000000000000",
 			timestamp: now
 		},
 		initialize: function () {
+			var hash = Contacts.findHash(this.get('from'));
+			this.set('hash',hash);
 		}
 	})
 };
