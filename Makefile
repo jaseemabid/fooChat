@@ -16,8 +16,8 @@ BASE_FILES = ${SRC_DIR}/core.js \
 	${SRC_DIR}/templates.js \
 	${SRC_DIR}/models.js \
 	${SRC_DIR}/collections.js \
-	${SRC_DIR}/views.js
-
+	${SRC_DIR}/views.js \
+	${SRC_DIR}/routers.js
 
 MODULES = ${JS_LIBS}\
 	${SRC_DIR}/intro.js\
