@@ -5,9 +5,8 @@
 (function ($) {
 	"use strict";
 	$(document).ready(function () {
-
-		var App = new fooChat.Views.AppView();
-
+		window.App = new fooChat.Routers.BackboneApp();
+		Backbone.history.start({pushState: true, root: "/"})
 	});
 
 }(jQuery));
