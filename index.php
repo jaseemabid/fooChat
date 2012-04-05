@@ -40,7 +40,7 @@
 					<ul class="nav nav-tabs nav-stacked" id="contactsList">
 					</ul>
 					<form class="well form-search">
-						<input type="text" class="input-medium search-query" placeholder="Add a new contact ">
+						<input type="text" id="newContact" class="input-medium search-query" placeholder="Add a new contact ">
 					</form>
 
 				</div>
