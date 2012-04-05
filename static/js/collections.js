@@ -9,6 +9,9 @@ fooChat.Collections = {
 		url: '/couch/users/_design/contacts/_view/byUsername?key="irene"',
 		parse: function (response) {
 			return response.rows[0].value;
+		},
+		findHash : function (fullname) {
+			return this.where({"fullName": fullname})[0].get('hash');
 		}
 	}),
 	MessageList: Backbone.Collection.extend({
