@@ -7,6 +7,7 @@ var now = (new Date()).toString();
 fooChat.Models = {
 	Contact : Backbone.Model.extend({
 		// Default attributes for the contact
+		url : '/api/contacts/new',
 		defaults: {
 			fullName : "fooBar",
 			hash: "fooBar"
