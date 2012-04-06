@@ -43,9 +43,8 @@ fooChat.Views = {
 		initialize: function () {
 		},
 		addContact : function(e) {
-			console.log(e.keyCode);
-			console.log(this.$el.val());
 			if (e.keyCode != 13) return;
+			e.preventDefault();
 			if (! this.$el.val()) return;
 			Contacts.create({fullName: this.$el.val()});
 		}
