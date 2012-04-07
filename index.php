@@ -35,7 +35,7 @@
 			</a>
 			<ul class="nav pull-right" id="dashBoard">
 				<li class="dropdown active">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{fullName}<b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;&nbsp;{fullName}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<img src="http://www.gravatar.com/avatar/{hash}"/>
 						<ul class="userInfo" >
