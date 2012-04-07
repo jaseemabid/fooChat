@@ -11,6 +11,7 @@ fooChat.Models = {
 			uid : 0,
 			fullname : 'to fooChat', // UI stuff :)
 			username : 'foobar',
+			email : 'foo@bar.com',
 			hash : 0
 		},
 		initialize : function () {
