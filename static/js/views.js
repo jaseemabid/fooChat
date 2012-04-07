@@ -96,7 +96,19 @@ fooChat.Views = {
 		render : function(){
 			console.log("Render login UI here");
 		}
-
-	})
-
+	}),
+	TopBarView : Backbone.View.extend({
+		template : $('#template-topBar').html(),
+		events : {
+		},
+		initialize: function () {
+			this.model = fooChat.ActiveUser = new fooChat.Models.ActiveUser();
+			this.model.bind('change', this.render, this);
+			this.render();
+		},
+		render: function () {
+			$("body").prepend($(this.el).html(this.template.supplant(this.model.toJSON())));
+			return this;
+		}
+	}),
 };

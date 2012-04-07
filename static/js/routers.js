@@ -11,7 +11,7 @@ fooChat.Routers = {
 				'login' : 'login'
 			},
 			initialize: function() {
-			//	this.home();
+				new fooChat.Views.TopBarView();
 			},
 			home: function() {
 				var App = new fooChat.Views.AppView();
