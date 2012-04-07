@@ -9,8 +9,8 @@ def login():
 	log.info("Login function called.")
 	# Demo login, write function later.
 	return '{ \
-		"uid":"3d123352c8c4c8866f5158acc6000366", \
-		"fullName" : "Jaseem Abid" \
-		}'
-
-
+			"uid": 1234, \
+			"fullname": "Jaseem Abid", \
+			"username": "jaseemabid", \
+			"hash": "40901f06ff8e7bb58e200630c613d647" \
+			}'
