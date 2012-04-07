@@ -9,7 +9,7 @@ fooChat.Models = {
 		url: '/api/login',
 		defaults : {
 			uid : 0,
-			fullName : 'to fooChat', // UI stuff :)
+			fullname : 'to fooChat', // UI stuff :)
 			username : 'foobar',
 			hash : 0
 		},
