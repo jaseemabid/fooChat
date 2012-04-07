@@ -10,8 +10,8 @@ fooChat.Collections = {
 		parse: function (response) {
 			return response.rows[0].value;
 		},
-		findHash : function (fullname) {
-			return this.where({"fullName": fullname})[0].get('hash');
+		findHash : function (username) {
+			return this.where({"username": username})[0].get('hash');
 		}
 	}),
 	MessageList: Backbone.Collection.extend({

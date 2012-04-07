@@ -23,7 +23,7 @@ fooChat.Models = {
 		// Default attributes for the contact
 		url : '/api/contacts/new',
 		defaults: {
-			fullName : "fooBar"
+			username : "fooBar"
 		},
 		initialize: function () {
 		}
@@ -34,7 +34,6 @@ fooChat.Models = {
 			// Ensure that each photo created has an `src`.
 			msg : "fooBar message",
 			from: "chatBot",
-			hash: "00000000000000000000000000000000",
 			timestamp: now
 		},
 		initialize: function () {

@@ -49,7 +49,7 @@ fooChat.Views = {
 			e.preventDefault();
 			var dom = this.$el.find('input#newContact');
 			if (! dom.val() ) return;
-			Contacts.create({fullName: dom.val()});
+			Contacts.create({username: dom.val()});
 			dom.val('');
 		},
 		render: function () {

@@ -14,7 +14,7 @@
 
 		<script id="template-contact" type="text/template">
 			<a href="#"><img class="avatar" src="http://www.gravatar.com/avatar/{hash}" />
-			<span class="name">{fullName}</span></a>
+			<span class="name">{username}</span></a>
 		</script>
 
 		<script id="template-message" type="text/template">
