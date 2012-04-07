@@ -27,6 +27,11 @@
 			<div class="selfAvatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
 		</script>
 
+		<script id="template-addContact" type="text/template">
+				<input type="text" id="newContact" class="input-medium search-query" placeholder="Add a new contact ">
+		</script>
+
+
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -65,9 +70,7 @@
 				<div class="span3" id="sideBar">
 					<ul class="nav nav-tabs nav-stacked" id="contactsList">
 					</ul>
-					<form class="well form-search">
-						<input type="text" id="newContact" class="input-medium search-query" placeholder="Add a new contact ">
-					</form>
+
 
 				</div>
 				<div class="span4" id="messageBox">

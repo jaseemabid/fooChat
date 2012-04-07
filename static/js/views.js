@@ -35,18 +35,27 @@ fooChat.Views = {
 		}
 	}),
 	AddContactView : Backbone.View.extend({
-		el : $('input#newContact'),
-		tagName: "div",
+		tagName : "form",
+		className : "well form-search",
+		template : $('#template-addContact').html(),
 		events : {
-			"keypress" : "addContact"
+			"keypress input#newContact" : "addContact"
 		},
 		initialize: function () {
+			this.render();
 		},
 		addContact : function(e) {
 			if (e.keyCode != 13) return;
 			e.preventDefault();
-			if (! this.$el.val()) return;
-			Contacts.create({fullName: this.$el.val()});
+			var dom = this.$el.find('input#newContact');
+			if (! dom.val() ) return;
+			Contacts.create({fullName: dom.val()});
+			dom.val('');
+		},
+		render: function () {
+			console.log(this.el);
+			$("div#sideBar").append($(this.el).html(this.template.supplant({})));
+			return this;
 		}
 	}),
 	AppView : Backbone.View.extend({
@@ -79,6 +88,15 @@ fooChat.Views = {
 		addAllMessage: function () {
 			Messages.each(this.addOneMessage);
 		},
+
+	}),
+	LoginView : Backbone.View.extend({
+		initialize : function() {
+			this.render();
+		},
+		render : function(){
+			console.log("Render login UI here");
+		}
 
 	})
 
