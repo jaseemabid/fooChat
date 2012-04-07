@@ -5,6 +5,21 @@
 var now = (new Date()).toString();
 
 fooChat.Models = {
+	ActiveUser : Backbone.Model.extend({
+		url: '/api/login',
+		defaults : {
+			uid : 0,
+			fullName : 'to fooChat', // UI stuff :)
+			username : 'foobar',
+			hash : 0
+		},
+		initialize : function () {
+			if(!this.get('uid')){
+				console.log("do login stuff");
+			}
+		}
+
+	}),
 	Contact : Backbone.Model.extend({
 		// Default attributes for the contact
 		url : '/api/contacts/new',
