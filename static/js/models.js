@@ -18,14 +18,12 @@ fooChat.Models = {
 				console.log("do login stuff");
 			}
 		}
-
 	}),
 	Contact : Backbone.Model.extend({
 		// Default attributes for the contact
 		url : '/api/contacts/new',
 		defaults: {
-			fullName : "fooBar",
-			hash: "fooBar"
+			fullName : "fooBar"
 		},
 		initialize: function () {
 		}
