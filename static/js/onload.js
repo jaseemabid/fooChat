@@ -6,7 +6,8 @@
 	"use strict";
 	$(document).ready(function () {
 		window.App = new fooChat.Routers.BackboneApp();
-		Backbone.history.start({pushState: true, root: "/"})
+		Backbone.history.start({root: "/fooChat"});
+
 	});
 
 }(jQuery));

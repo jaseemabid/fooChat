@@ -11,11 +11,14 @@ fooChat.Routers = {
 				'login' : 'login'
 			},
 			initialize: function() {
-				this.home();
+			//	this.home();
 			},
 			home: function() {
 				console.log("home");
 				var App = new fooChat.Views.AppView();
+			},
+			login: function() {
+				console.log("login");
 			},
 			blank: function() {
 				console.log("blank");
