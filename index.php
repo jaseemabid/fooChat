@@ -33,7 +33,7 @@
 			<a class="brand" href="#">
 				Welcome {fullName}
 			</a>
-			<ul class="nav pull-right">
+			<ul class="nav pull-right" id="dashBoard">
 				<li class="dropdown active">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{fullName}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
