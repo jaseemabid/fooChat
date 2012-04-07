@@ -4,7 +4,7 @@
 
 fooChat.Routers = {
 
-	BackboneApp : Backbone.Router.extend({
+	fooChat : B.Router.extend({
 			routes: {
 				'' : 'home',
 				'blank': 'blank',

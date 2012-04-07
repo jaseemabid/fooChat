@@ -3,7 +3,7 @@
  */
 
 fooChat.Collections = {
-	ContactList: Backbone.Collection.extend({
+	ContactList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Contact,
 		url: '/couch/foochat/_design/byUserId/_view/contacts?key=%223d123352c8c4c8866f5158acc6000366%22',
@@ -14,7 +14,7 @@ fooChat.Collections = {
 			return this.where({"username": username})[0].get('hash');
 		}
 	}),
-	MessageList: Backbone.Collection.extend({
+	MessageList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Message,
 		url: '/couch/foochat/_design/byUserId/_view/inbox?key=%223d123352c8c4c8866f5158acc6000366%22',

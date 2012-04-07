@@ -6,7 +6,7 @@
 	"use strict";
 	$(document).ready(function () {
 
-		new fooChat.Routers.BackboneApp();
+		new fooChat.Routers.fooChat();
 		Backbone.history.start({
 			root: "/fooChat"
 		});

@@ -5,7 +5,7 @@
 var now = (new Date()).toString();
 
 fooChat.Models = {
-	ActiveUser : Backbone.Model.extend({
+	ActiveUser : B.Model.extend({
 		url: '/api/login',
 		defaults : {
 			uid : 0,
@@ -17,7 +17,7 @@ fooChat.Models = {
 		initialize : function () {
 		}
 	}),
-	Contact : Backbone.Model.extend({
+	Contact : B.Model.extend({
 		// Default attributes for the contact
 		url : '/api/contacts/new',
 		defaults: {
@@ -26,7 +26,7 @@ fooChat.Models = {
 		initialize: function () {
 		}
 	}),
-	Message : Backbone.Model.extend({
+	Message : B.Model.extend({
 		// Default attributes for the contact
 		defaults: {
 			// Ensure that each photo created has an `src`.

@@ -3,7 +3,7 @@
  */
 
 fooChat.Views = {
-	ContactView : Backbone.View.extend({
+	ContactView : B.View.extend({
 		tagName: "li",
 		model: fooChat.Models.Contact,
 		// Pass the contents of the contact template through a templating
@@ -19,7 +19,7 @@ fooChat.Views = {
 			this.model.bind('destroy', this.remove, this);
 		}
 	}),
-	MessageView : Backbone.View.extend({
+	MessageView : B.View.extend({
 		tagName: "div",
 		className : "well messageBox",
 		model: fooChat.Models.Message,
@@ -34,7 +34,7 @@ fooChat.Views = {
 			this.model.bind('destroy', this.remove, this);
 		}
 	}),
-	AddContactView : Backbone.View.extend({
+	AddContactView : B.View.extend({
 		tagName : "form",
 		className : "well form-search",
 		template : $('#template-addContact').html(),
@@ -57,7 +57,7 @@ fooChat.Views = {
 			return this;
 		}
 	}),
-	AppView : Backbone.View.extend({
+	AppView : B.View.extend({
 		initialize: function () {
 
 			Contacts.bind('add', this.addOneContact, this);
@@ -89,7 +89,7 @@ fooChat.Views = {
 		},
 
 	}),
-	LoginView : Backbone.View.extend({
+	LoginView : B.View.extend({
 		initialize : function() {
 			this.render();
 		},
@@ -97,7 +97,7 @@ fooChat.Views = {
 			console.log("Render login UI here");
 		}
 	}),
-	TopBarView : Backbone.View.extend({
+	TopBarView : B.View.extend({
 		template : $('#template-topBar').html(),
 		events : {
 		},

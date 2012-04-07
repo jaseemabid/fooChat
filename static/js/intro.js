@@ -10,7 +10,7 @@
  */
 
 /* The main fooChat library starts here */
-(function ($, window, undefined) {
+(function ($, B, window, undefined) {
 	"use strict";
 
 	// Use the correct jQuery, document accordingly with window argument (sandbox)

@@ -2,7 +2,7 @@
 // Exposing the main namespace object.
 window.fooChat = fooChat;
 
-})( jQuery, window );
+})( jQuery, Backbone, window );
 
 /*!
   * The main fooChat library ends here.
