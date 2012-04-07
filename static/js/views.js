@@ -102,7 +102,7 @@ fooChat.Views = {
 		events : {
 		},
 		initialize: function () {
-			this.model = fooChat.ActiveUser = new fooChat.Models.ActiveUser();
+			this.model = this.options;
 			this.model.bind('change', this.render, this);
 			this.render();
 		},

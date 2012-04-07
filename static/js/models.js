@@ -15,9 +15,6 @@ fooChat.Models = {
 			hash : 0
 		},
 		initialize : function () {
-			if(!this.get('uid')){
-				console.log("do login stuff");
-			}
 		}
 	}),
 	Contact : Backbone.Model.extend({

@@ -6,15 +6,13 @@ fooChat.Routers = {
 
 	BackboneApp : Backbone.Router.extend({
 			routes: {
-				'': 'home',
 				'blank': 'blank',
 				'login' : 'login'
 			},
 			initialize: function() {
-				new fooChat.Views.TopBarView();
-			},
-			home: function() {
-				var App = new fooChat.Views.AppView();
+				fooChat.activeUser = new fooChat.Models.ActiveUser();
+				fooChat.topBar =  new fooChat.Views.TopBarView(fooChat.activeUser);
+				fooChat.app = new fooChat.Views.AppView();
 			},
 			login: function() {
 				console.log("login");
