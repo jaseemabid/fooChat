@@ -53,7 +53,6 @@ fooChat.Views = {
 			dom.val('');
 		},
 		render: function () {
-			console.log(this.el);
 			$("div#sideBar").append($(this.el).html(this.template.supplant({})));
 			return this;
 		}

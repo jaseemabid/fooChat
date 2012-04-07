@@ -6,7 +6,7 @@ fooChat.Collections = {
 	ContactList: Backbone.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Contact,
-		url: '/couch/users/_design/contacts/_view/byUsername?key="irene"',
+		url: '/couch/foochat/_design/byUserId/_view/contacts?key=%223d123352c8c4c8866f5158acc6000366%22',
 		parse: function (response) {
 			return response.rows[0].value;
 		},
@@ -17,7 +17,7 @@ fooChat.Collections = {
 	MessageList: Backbone.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Message,
-		url: '/couch/messages/_design/messages/_view/inbox?group=true&key="6befa6914123b2993c39146350002cbc"',
+		url: '/couch/foochat/_design/byUserId/_view/inbox?key=%223d123352c8c4c8866f5158acc6000366%22',
 		parse: function (response) {
 			return response.rows[0].value;
 		}

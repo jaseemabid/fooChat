@@ -18,7 +18,7 @@
 		</script>
 
 		<script id="template-message" type="text/template">
-			<time class="timeago" datetime="{timestamp}">{timestamp}</time><div class="message">{msg}</div>
+			<time class="timeago" datetime="{timestamp}">{timestamp}</time><div class="message">{message}</div>
 			<div class="avatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
 		</script>
 

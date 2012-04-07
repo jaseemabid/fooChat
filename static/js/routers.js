@@ -14,7 +14,6 @@ fooChat.Routers = {
 			//	this.home();
 			},
 			home: function() {
-				console.log("home");
 				var App = new fooChat.Views.AppView();
 			},
 			login: function() {

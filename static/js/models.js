@@ -32,7 +32,7 @@ fooChat.Models = {
 		// Default attributes for the contact
 		defaults: {
 			// Ensure that each photo created has an `src`.
-			msg : "fooBar message",
+			message : "fooBar message",
 			from: "chatBot",
 			timestamp: now
 		},
