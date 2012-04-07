@@ -27,12 +27,38 @@
 			<div class="selfAvatar"><img src="http://www.gravatar.com/avatar/{hash}" /></div>
 		</script>
 
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">
+				Welcome {fullName}
+			</a>
+			<ul class="nav pull-right">
+				<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{fullName}<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<img src="http://www.gravatar.com/avatar/{hash}"/>
+						<ul class="userInfo" >
+							<li><strong>{fullName}</strong></li>
+							<li>{email}</li>
+							<li>{username}</li>
+						</ul>
+						<li class="divider"></li>
+						<li>
+							<a id="signout" href="#logout">Signout</a>
+							<a id="settings" href="#settings">Settings</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 		<div class="container-fluid">
 
 			<div class="row-fluid" id="topBar">
-				<h2 class="welcome">Welcome Jaseem Abid :)</h2>
-				<button class="btn pull-right"> <i class="icon-cog"></i>Settings</button>
-				<button class="btn pull-right">fooBar</button>
+
 			</div>
 
 			<div class="row-fluid">
