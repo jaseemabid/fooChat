@@ -49,7 +49,7 @@ fooChat.Views = {
 			e.preventDefault();
 			var dom = this.$el.find('input#newContact');
 			if (! dom.val() ) return;
-			Contacts.create({username: dom.val()});
+			fooChat.contacts.create({username: dom.val()});
 			dom.val('');
 		},
 		render: function () {
@@ -60,24 +60,24 @@ fooChat.Views = {
 	AppView : B.View.extend({
 		initialize: function () {
 
-			Contacts.bind('add', this.addOneContact, this);
-			Contacts.bind('reset', this.addAllContact, this);
-			Contacts.bind('all', this.render, this);
-			Contacts.fetch();
+			fooChat.contacts.bind('add', this.addOneContact, this);
+			fooChat.contacts.bind('reset', this.addAllContact, this);
+			fooChat.contacts.bind('all', this.render, this);
+			fooChat.contacts.fetch();
 
 			var addContactInput = new fooChat.Views.AddContactView();
 
-			Messages.bind('add', this.addOneMessage, this);
-			Messages.bind('reset', this.addAllMessage, this);
-			Messages.bind('all', this.render, this);
-			Messages.fetch();
+			fooChat.messages.bind('add', this.addOneMessage, this);
+			fooChat.messages.bind('reset', this.addAllMessage, this);
+			fooChat.messages.bind('all', this.render, this);
+			fooChat.messages.fetch();
 		},
 		addOneContact: function (contact) {
 			var view = new fooChat.Views.ContactView({model: contact});
 			$('ul#contactsList').append(view.render().el);
 		},
 		addAllContact: function () {
-			Contacts.each(this.addOneContact);
+			fooChat.contacts.each(this.addOneContact);
 		},
 		addOneMessage: function (message) {
 			var view = new fooChat.Views.MessageView({model: message});
@@ -85,7 +85,7 @@ fooChat.Views = {
 			$('time.timeago').timeago();
 		},
 		addAllMessage: function () {
-			Messages.each(this.addOneMessage);
+			fooChat.messages.each(this.addOneMessage);
 		},
 
 	}),
