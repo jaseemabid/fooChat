@@ -6,9 +6,12 @@ fooChat.Collections = {
 	ContactList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Contact,
-		url: '/couch/foochat/_design/byUserId/_view/contacts?key=%223d123352c8c4c8866f5158acc6000366%22',
+		url: '/couch/foochat/_design/byUserId/_view/contacts?key="{uid}"',
 		parse: function (response) {
 			return response.rows[0].value;
+		},
+		initialize : function (objects,args) {
+			this.url = this.url.supplant(args.toJSON());
 		},
 		findHash : function (username) {
 			return this.where({"username": username})[0].get('hash');
@@ -17,12 +20,13 @@ fooChat.Collections = {
 	MessageList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Message,
-		url: '/couch/foochat/_design/byUserId/_view/inbox?key=%223d123352c8c4c8866f5158acc6000366%22',
+		url: '/couch/foochat/_design/byUserId/_view/inbox?key="{uid}"',
 		parse: function (response) {
 			return response.rows[0].value;
+		},
+		initialize : function (objects,args) {
+			this.url = this.url.supplant(args.toJSON());
 		}
 	}),
 };
 
-var Contacts = new fooChat.Collections.ContactList();
-var Messages = new fooChat.Collections.MessageList();
