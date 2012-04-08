@@ -10,11 +10,18 @@ fooChat.Collections = {
 		parse: function (response) {
 			return response.rows[0].value;
 		},
-		initialize : function (objects,args) {
+		initialize: function (objects, args) {
 			this.url = this.url.supplant(args.toJSON());
 		},
-		findHash : function (username) {
-			return this.where({"username": username})[0].get('hash');
+		findHash: function (username) {
+			var hash = this.where({
+				"username": username
+			});
+			if (hash.length > 0) {
+				return hash[0].get('hash');
+			} else {
+				return 0;
+			}
 		}
 	}),
 	MessageList: B.Collection.extend({
@@ -24,9 +31,8 @@ fooChat.Collections = {
 		parse: function (response) {
 			return response.rows[0].value;
 		},
-		initialize : function (objects,args) {
+		initialize: function (objects, args) {
 			this.url = this.url.supplant(args.toJSON());
 		}
-	}),
+	})
 };
-

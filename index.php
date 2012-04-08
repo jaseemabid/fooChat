@@ -46,7 +46,6 @@
 				</div>
 				<div class="span4" id="messageBox">
 					<!--Body content-->
-					<textarea class="input-xlarge" id="newMessage" rows="3" ></textarea>
 				</div>
 			</div>
 		</div>
