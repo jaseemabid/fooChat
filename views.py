@@ -26,7 +26,7 @@ def logout():
 	return jsonify(success="true")
 
 def register():
-	if get():
+	if post():
 		data=dict()
 		data['username']=request.args.get('username')
 		data['password']=request.args.get('password')
