@@ -29,6 +29,10 @@ fooChat.Views = {
 			$(this.el).html(this.template.supplant(this.model.toJSON()));
 			return this;
 		},
+		remove: function() {
+			$(this.el).slideUp();
+			return this;
+		},
 		initialize: function () {
 			this.model.bind('change', this.render, this);
 			this.model.bind('destroy', this.remove, this);
@@ -124,6 +128,9 @@ fooChat.Views = {
 			var view = new fooChat.Views.MessageView({
 				model: message
 			});
+			if (fooChat.messages.length > 6) {
+				fooChat.messages.at(0).destroy();
+			}
 			$('#newMessage').before(view.render().el);
 			$('time.timeago').timeago();
 		},
