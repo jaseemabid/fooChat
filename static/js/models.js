@@ -6,7 +6,7 @@ var now = (new Date()).toString();
 
 fooChat.Models = {
 	ActiveUser: B.Model.extend({
-		url: '/api/login',
+		url: '/user/login/',
 		defaults: {
 			uid: 0,
 			fullname: 'to fooChat',
@@ -19,7 +19,7 @@ fooChat.Models = {
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
-		url: '/api/contacts/new',
+		url: '/contacts/new/',
 		defaults: {
 			username: "fooBar"
 		},
