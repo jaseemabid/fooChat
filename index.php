@@ -37,9 +37,9 @@
 
 <script id="template-login" type="text/template">
 <form class="well form-vertical"><div class="input-prepend">
-<label>Username</label><span class="add-on"><i class="icon-user"></i></span><input class="span10" placeholder="Username">
+<label>Username</label><span class="add-on"><i class="icon-user"></i></span><input type="text" class="span10" placeholder="Username">
 </div><div class="input-prepend">
-<label>Password</label><span class="add-on"><i class="icon-lock"></i></span><input class="span10" placeholder="Username">
+<label>Password</label><span class="add-on"><i class="icon-lock"></i></span><input type="password" class="span10" placeholder="Username">
 </div><button type="submit" class="btn">Sign in</button></form>
 </script>
 

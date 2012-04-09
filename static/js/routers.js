@@ -31,13 +31,6 @@ fooChat.Routers = {
 			fooChat.loginView = new fooChat.Views.LoginView();
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
 
-			fooChat.activeUser.fetch({
-				"success": function (model, response) {
-					fooChat.appRouter.navigate('/', true);
-				},"error" : function (model, response) {
-					console.error("fooChat.activeUser.fetch error");
-				}
-			});
 		},
 		logout : function () {
 			this.navigate('/login',true);

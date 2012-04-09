@@ -41,6 +41,7 @@ fooChat.Views = {
 	LoginView: B.View.extend({
 		tagName: "form",
 		className: "well form-vertical",
+		id: "loginForm",
 		template: $('#template-login').html(),
 		events: {
 			"click button" : "login"
@@ -49,7 +50,16 @@ fooChat.Views = {
 			this.render();
 		},
 		login: function (e) {
-			
+			fooChat.activeUser.set('username',this.$el.find('input[type="text"]').val());
+			fooChat.activeUser.set('password',this.$el.find('input[type="password"]').val());
+			fooChat.activeUser.save("foo", "bar", {
+				"success": function (model, response) {
+					fooChat.appRouter.navigate('/', true);
+				},"error" : function (model, response) {
+					console.error("fooChat.activeUser.fetch error");
+				}
+			});
+		
 		},
 		render: function () {
 			$('ul#dashBoard').remove();
