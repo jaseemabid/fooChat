@@ -38,6 +38,24 @@ fooChat.Views = {
 			this.model.bind('destroy', this.remove, this);
 		}
 	}),
+	LoginView: B.View.extend({
+		tagName: "form",
+		className: "well form-vertical",
+		template: $('#template-login').html(),
+		events: {
+			"click button" : "login"
+		},
+		initialize: function () {
+			this.render();
+		},
+		login: function (e) {
+			
+		},
+		render: function () {
+			$("div#messageBox").append($(this.el).html(this.template.supplant({})));
+			return this;
+		}
+	}),
 	AddContactView: B.View.extend({
 		tagName: "form",
 		className: "well form-search",
@@ -138,14 +156,6 @@ fooChat.Views = {
 			fooChat.messages.each(this.addOneMessage);
 		}
 
-	}),
-	LoginView: B.View.extend({
-		initialize: function () {
-			this.render();
-		},
-		render: function () {
-			console.log("Render login UI here");
-		}
 	}),
 	TopBarView: B.View.extend({
 		template: $('#template-topBar').html(),
