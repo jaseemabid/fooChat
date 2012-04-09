@@ -10,7 +10,10 @@ fooChat.Routers = {
 			'blank': 'blank',
 			'login': 'login'
 		},
-		initialize: function () {},
+		initialize: function () {
+			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
+			fooChat.activeUser.on('change:uid',this.logout , this)
+		},
 		home: function () {
 
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
@@ -35,6 +38,9 @@ fooChat.Routers = {
 					console.error("fooChat.activeUser.fetch error");
 				}
 			});
+		},
+		logout : function () {
+			this.navigate('/login',true);
 		},
 		blank: function () {
 			console.log("blank");

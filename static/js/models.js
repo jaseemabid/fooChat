@@ -22,7 +22,10 @@ fooChat.Models = {
 			if(this.get('uid') === 0) {
 				this.save();
 			}
-		}
+		},
+		logout : function() {
+			this.set('uid',0);
+		} 
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
