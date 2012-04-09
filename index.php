@@ -32,7 +32,7 @@
 </script>
 
 <script id="template-topBar" type="text/template">
-	<div class=navbar><div class=navbar-inner><div class=container><a class=brand href="#">Welcome {fullname}</a><ul class="nav pull-right" id=dashBoard><li class="dropdown active"><a href="#" class=dropdown-toggle data-toggle=dropdown><i class="icon-user icon-white"></i>&nbsp;&nbsp;&nbsp;{fullname}<b class=caret></b></a><ul class=dropdown-menu><img src="http://www.gravatar.com/avatar/{hash}"><ul class=userInfo><li><strong>{fullname}</strong></li><li>{email}</li><li>{username}</li></ul><li class=divider></li><li><a id=signout href="#logout">Signout</a><a id=settings href="#settings">Settings</a></li></ul></li></ul></div></div></div>
+	<div class=navbar-inner><div class=container><a class=brand href="#">Welcome {fullname}</a><ul class="nav pull-right" id=dashBoard><li class="dropdown active"><a href="#" class=dropdown-toggle data-toggle=dropdown><i class="icon-user icon-white"></i>&nbsp;&nbsp;&nbsp;{fullname}<b class=caret></b></a><ul class=dropdown-menu><img src="http://www.gravatar.com/avatar/{hash}"><ul class=userInfo><li><strong>{fullname}</strong></li><li>{email}</li><li>{username}</li></ul><li class=divider></li><li><a id=signout href="#logout">Signout</a><a id=settings href="#settings">Settings</a></li></ul></li></ul></div></div>
 </script>
 
 <script id="template-login" type="text/template">

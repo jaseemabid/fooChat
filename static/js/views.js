@@ -158,6 +158,8 @@ fooChat.Views = {
 
 	}),
 	TopBarView: B.View.extend({
+		tagName: "div",
+		className: "navbar",
 		template: $('#template-topBar').html(),
 		events: {},
 		initialize: function () {
@@ -166,6 +168,7 @@ fooChat.Views = {
 			this.render();
 		},
 		render: function () {
+			$('div.navbar').remove();
 			$("body").prepend($(this.el).html(this.template.supplant(this.model.toJSON())));
 			return this;
 		}
