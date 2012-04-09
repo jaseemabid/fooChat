@@ -45,7 +45,7 @@ fooChat.Models = {
 			timestamp: now
 		},
 		initialize: function () {
-			var hash = fooChat.contacts.findHash(this.get('from'));
+			var hash = fooChat.contacts.findHash(this.get('from')) || fooChat.activeUser.get('hash');
 			this.set('hash', hash);
 		}
 	})
