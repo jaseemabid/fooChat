@@ -27,6 +27,7 @@ fooChat.Routers = {
 		login: function () {
 			console.log("login");
 			fooChat.activeUser = new fooChat.Models.ActiveUser();
+			fooChat.loginView = new fooChat.Views.LoginView();
 		},
 		blank: function () {
 			console.log("blank");
