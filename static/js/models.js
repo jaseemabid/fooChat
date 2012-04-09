@@ -15,7 +15,14 @@ fooChat.Models = {
 			email: 'foo@bar.com',
 			hash: 0
 		},
-		initialize: function () {}
+		initialize: function () {},
+		login : function() {
+			console.log("uid is");
+			console.log(this.get('uid'));
+			if(this.get('uid') === 0) {
+				this.save();
+			}
+		}
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
