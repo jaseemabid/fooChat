@@ -33,6 +33,7 @@ fooChat.Models = {
 		initialize: function () {}
 	}),
 	Message: B.Model.extend({
+		url: '/message/new/',
 		// Default attributes for the contact
 		defaults: {
 			// Ensure that each photo created has an `src`.
