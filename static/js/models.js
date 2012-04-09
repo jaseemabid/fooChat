@@ -9,10 +9,10 @@ fooChat.Models = {
 		url: '/user/login/',
 		defaults: {
 			uid: 0,
-			fullname: 'to fooChat',
-			// UI stuff :)
+			fullname: "to fooChat",
+			email: "",
+			password: "",
 			username: 'foobar',
-			email: 'foo@bar.com',
 			hash: 0
 		},
 		initialize: function () {},
@@ -24,7 +24,7 @@ fooChat.Models = {
 			}
 		},
 		logout : function() {
-			this.set('uid',0);
+			this.set(this.defaults);
 		} 
 	}),
 	Contact: B.Model.extend({

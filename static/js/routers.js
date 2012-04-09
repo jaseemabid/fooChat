@@ -8,11 +8,12 @@ fooChat.Routers = {
 		routes: {
 			'': 'home',
 			'blank': 'blank',
-			'login': 'login'
+			'login': 'login',
+			'logout': 'logout'
 		},
 		initialize: function () {
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
-			fooChat.activeUser.on('change:uid',this.logout , this)
+			fooChat.activeUser.on('change:uid',this.login , this);
 		},
 		home: function () {
 
@@ -33,6 +34,7 @@ fooChat.Routers = {
 
 		},
 		logout : function () {
+			fooChat.activeUser.logout();
 			this.navigate('/login',true);
 		},
 		blank: function () {
