@@ -146,7 +146,7 @@ fooChat.Views = {
 			var view = new fooChat.Views.MessageView({
 				model: message
 			});
-			if (fooChat.messages.length > 6) {
+			if (fooChat.messages.length > 5) {
 				fooChat.messages.at(0).destroy();
 			}
 			$('#newMessage').before(view.render().el);
