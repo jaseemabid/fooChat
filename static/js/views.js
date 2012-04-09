@@ -52,7 +52,9 @@ fooChat.Views = {
 			
 		},
 		render: function () {
-			$("div#messageBox").append($(this.el).html(this.template.supplant({})));
+			$('ul#dashBoard').remove();
+			$('div#sideBar').html('');
+			$("div#messageBox").html('').append($(this.el).html(this.template.supplant({})));
 			return this;
 		}
 	}),
@@ -113,7 +115,7 @@ fooChat.Views = {
 			this.$el.val('');
 		},
 		render: function () {
-			$("div#messageBox").append($(this.el));
+			$("div#messageBox").html('').append($(this.el));
 			return this;
 		}
 	}),
@@ -140,6 +142,7 @@ fooChat.Views = {
 			$('ul#contactsList').append(view.render().el);
 		},
 		addAllContact: function () {
+			$('div#sideBar').prepend($('<ul>').attr({id:'contactsList'}).addClass('nav nav-tabs nav-stacked') );
 			fooChat.contacts.each(this.addOneContact);
 		},
 		addOneMessage: function (message) {
