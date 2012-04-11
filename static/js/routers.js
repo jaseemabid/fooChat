@@ -29,7 +29,6 @@ fooChat.Routers = {
 			fooChat.app = new fooChat.Views.AppView();
 		},
 		login: function () {
-			console.log("router login");
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
 			if (fooChat.activeUser.get('uid') !== 0) {
 				this.navigate("/", true);
@@ -38,7 +37,6 @@ fooChat.Routers = {
 			}
 		},
 		logout: function () {
-			console.log("logout called in router");
 			fooChat.activeUser.logout();
 			this.navigate('/login', true);
 		},

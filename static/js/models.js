@@ -12,22 +12,18 @@ fooChat.Models = {
 			fullname: "to fooChat",
 			email: "",
 			password: "",
-			username: 'foobar',
+			username: "",
 			hash: 0
 		},
 		initialize: function () {
 
 			if (this.get('uid') === 0 && localStorage["session"]) {
 				var model = JSON.parse(localStorage["session"]);
-				console.log("local storage model");
-				console.log(model);
 				this.set(model);
 			}
 
 		},
 		login: function () {
-			console.log("login with model uid : ");
-			console.log(this.get('uid'));
 			this.save("foo", "bar", {
 				"success": function () {
 					console.log("model save callback");
@@ -37,7 +33,6 @@ fooChat.Models = {
 		},
 		logout: function () {
 			this.set(this.defaults);
-			console.log("model logout");
 			localStorage.clear();
 		}
 	}),
