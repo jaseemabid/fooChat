@@ -29,7 +29,7 @@ fooChat.Views = {
 			$(this.el).html(this.template.supplant(this.model.toJSON()));
 			return this;
 		},
-		remove: function() {
+		remove: function () {
 			$(this.el).slideUp();
 			return this;
 		},
@@ -44,22 +44,16 @@ fooChat.Views = {
 		id: "loginForm",
 		template: $('#template-login').html(),
 		events: {
-			"click button" : "login"
+			"click button": "login"
 		},
 		initialize: function () {
 			this.render();
 		},
 		login: function (e) {
-			fooChat.activeUser.set('username',this.$el.find('input[type="text"]').val());
-			fooChat.activeUser.set('password',this.$el.find('input[type="password"]').val());
-			fooChat.activeUser.save("foo", "bar", {
-				"success": function (model, response) {
-					fooChat.appRouter.navigate('/', true);
-				},"error" : function (model, response) {
-					console.error("fooChat.activeUser.fetch error");
-				}
-			});
-		
+
+			fooChat.activeUser.set('username', this.$el.find('input[type="text"]').val());
+			fooChat.activeUser.set('password', this.$el.find('input[type="password"]').val());
+			fooChat.activeUser.login();
 		},
 		render: function () {
 			$('ul#dashBoard').remove();
@@ -152,7 +146,9 @@ fooChat.Views = {
 			$('ul#contactsList').append(view.render().el);
 		},
 		addAllContact: function () {
-			$('div#sideBar').prepend($('<ul>').attr({id:'contactsList'}).addClass('nav nav-tabs nav-stacked') );
+			$('div#sideBar').prepend($('<ul>').attr({
+				id: 'contactsList'
+			}).addClass('nav nav-tabs nav-stacked'));
 			fooChat.contacts.each(this.addOneContact);
 		},
 		addOneMessage: function (message) {

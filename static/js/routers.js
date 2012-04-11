@@ -13,7 +13,7 @@ fooChat.Routers = {
 		},
 		initialize: function () {
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
-			fooChat.activeUser.on('change:uid',this.login , this);
+			fooChat.activeUser.on('change:uid', this.login, this);
 		},
 		home: function () {
 
@@ -29,13 +29,18 @@ fooChat.Routers = {
 			fooChat.app = new fooChat.Views.AppView();
 		},
 		login: function () {
-			fooChat.loginView = new fooChat.Views.LoginView();
+			console.log("router login");
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
-
+			if (fooChat.activeUser.get('uid') !== 0) {
+				this.navigate("/", true);
+			} else {
+				fooChat.loginView = new fooChat.Views.LoginView();
+			}
 		},
-		logout : function () {
+		logout: function () {
+			console.log("logout called in router");
 			fooChat.activeUser.logout();
-			this.navigate('/login',true);
+			this.navigate('/login', true);
 		},
 		blank: function () {
 			console.log("blank");

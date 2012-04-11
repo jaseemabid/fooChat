@@ -15,17 +15,31 @@ fooChat.Models = {
 			username: 'foobar',
 			hash: 0
 		},
-		initialize: function () {},
-		login : function() {
-			console.log("uid is");
-			console.log(this.get('uid'));
-			if(this.get('uid') === 0) {
-				this.save();
+		initialize: function () {
+
+			if (this.get('uid') === 0 && localStorage["session"]) {
+				var model = JSON.parse(localStorage["session"]);
+				console.log("local storage model");
+				console.log(model);
+				this.set(model);
 			}
+
 		},
-		logout : function() {
+		login: function () {
+			console.log("login with model uid : ");
+			console.log(this.get('uid'));
+			this.save("foo", "bar", {
+				"success": function () {
+					console.log("model save callback");
+					localStorage["session"] = JSON.stringify(fooChat.activeUser.toJSON());
+				}
+			});
+		},
+		logout: function () {
 			this.set(this.defaults);
-		} 
+			console.log("model logout");
+			localStorage.clear();
+		}
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
