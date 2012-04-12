@@ -13,6 +13,7 @@ fooChat.Routers = {
 		},
 		initialize: function () {
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
+			fooChat.activeUser.set(fooChat.config);
 			fooChat.activeUser.on('change:uid', this.login, this);
 		},
 		home: function () {

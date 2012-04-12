@@ -17,4 +17,9 @@
 	var document = window.document,
 		navigator = window.navigator,
 		location = window.location,
-		fooChat = {}; // The main namespace object to be exposed.
+		fooChat = {  // The main namespace object to be exposed.
+			config : {
+				couchServer: "http://localhost:9000",
+				database : "foochat"
+			}	
+		};

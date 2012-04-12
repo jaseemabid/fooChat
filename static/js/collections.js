@@ -6,7 +6,7 @@ fooChat.Collections = {
 	ContactList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Contact,
-		url: '/couch/foochat/_design/byUserId/_view/contacts?key="{uid}"',
+		url: '{couchServer}/{database}/_design/byUserId/_view/contacts?key="{uid}"',
 		parse: function (response) {
 			return response.rows[0].value;
 		},
@@ -27,7 +27,7 @@ fooChat.Collections = {
 	MessageList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Message,
-		url: '/couch/foochat/_design/byUserId/_view/inbox?key="{uid}"',
+		url: '{couchServer}/{database}/_design/byUserId/_view/inbox?key="{uid}"',
 		parse: function (response) {
 			return response.rows[0].value;
 		},
