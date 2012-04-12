@@ -6,7 +6,7 @@ var now = (new Date()).toString();
 
 fooChat.Models = {
 	ActiveUser: B.Model.extend({
-		url: '/user/login/',
+		url: '/api/user/login/',
 		defaults: {
 			uid: 0,
 			fullname: "to fooChat",
@@ -38,14 +38,14 @@ fooChat.Models = {
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
-		url: '/contacts/new/',
+		url: '/api/contacts/new/',
 		defaults: {
 			username: "fooBar"
 		},
 		initialize: function () {}
 	}),
 	Message: B.Model.extend({
-		url: '/message/new/',
+		url: '/api/message/new/',
 		// Default attributes for the contact
 		defaults: {
 			// Ensure that each photo created has an `src`.
