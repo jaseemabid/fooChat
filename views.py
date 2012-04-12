@@ -1,16 +1,15 @@
-from flask import jsonify, request
+from flask import render_template, flash, url_for, redirect, json, jsonify, request
 from commons import get, post
 import settings
 import couchdb
 import logging as log
 log.basicConfig(level=log.DEBUG)
 
-couch = couchdb.Server()
+couch = couchdb.Server(settings.couchServer)
 db = couch[settings.database]
 
 def index():
-	log.info("Index function called.")
-	return "Hello world."
+	return render_template('index.html')
 
 def login():
 	log.info("Login function called.")
