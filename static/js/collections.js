@@ -29,7 +29,7 @@ fooChat.Collections = {
 		model: fooChat.Models.Message,
 		url: '{couchServer}/{database}/_design/byUserId/_view/inbox?key="{uid}"',
 		parse: function (response) {
-			return response.rows[0].value;
+			return _.pluck(response.rows,'value' );
 		},
 		initialize: function (objects, args) {
 			this.url = this.url.supplant(args.toJSON());
