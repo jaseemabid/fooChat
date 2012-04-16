@@ -1,0 +1,6 @@
+Issues to rectify
+
+1. Message model time's wrong
+2. Flask templating
+3. Contact duplication
+4. CORS

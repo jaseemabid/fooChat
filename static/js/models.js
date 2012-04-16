@@ -6,37 +6,47 @@ var now = (new Date()).toString();
 
 fooChat.Models = {
 	ActiveUser: B.Model.extend({
-		url: '/user/login/',
+		url: '/api/user/login/',
 		defaults: {
 			uid: 0,
 			fullname: "to fooChat",
 			email: "",
 			password: "",
-			username: 'foobar',
-			hash: 0
+			username: "",
+			hash: 0,
+			from: "",
 		},
-		initialize: function () {},
-		login : function() {
-			console.log("uid is");
-			console.log(this.get('uid'));
-			if(this.get('uid') === 0) {
-				this.save();
+		initialize: function () {
+
+			if (this.get('uid') === 0 && localStorage["session"]) {
+				var model = JSON.parse(localStorage["session"]);
+				this.set(model);
 			}
+
 		},
-		logout : function() {
+		login: function () {
+			this.save("foo", "bar", {
+				"success": function () {
+					console.log("model save callback");
+					localStorage["session"] = JSON.stringify(fooChat.activeUser.toJSON());
+				}
+			});
+		},
+		logout: function () {
 			this.set(this.defaults);
-		} 
+			localStorage.clear();
+		}
 	}),
 	Contact: B.Model.extend({
 		// Default attributes for the contact
-		url: '/contacts/new/',
+		url: '/api/contacts/new/',
 		defaults: {
 			username: "fooBar"
 		},
 		initialize: function () {}
 	}),
 	Message: B.Model.extend({
-		url: '/message/new/',
+		url: '/api/message/new/',
 		// Default attributes for the contact
 		defaults: {
 			// Ensure that each photo created has an `src`.
