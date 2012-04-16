@@ -68,6 +68,7 @@ fooChat.Views = {
 
 			fooChat.activeUser.set('username', this.$el.find('input[type="text"]').val());
 			fooChat.activeUser.set('password', this.$el.find('input[type="password"]').val());
+			fooChat.activeUser.set('id', null); // prevent PUT for POST
 			fooChat.activeUser.login();
 		},
 		render: function () {
