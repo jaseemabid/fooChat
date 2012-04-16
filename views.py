@@ -14,11 +14,12 @@ def index():
 def login():
 	log.info("Login function called.")
 	# Demo login, write function later.
-	username = request.form.get('username')
-	password = request.form.get('password')
-	passwordHash = password
-	log.info("username : %s",username)
-	log.info("password : %s",password)
+	username = request.json['username']
+	password = request.json['password']
+	passwordHash = password # update later
+
+	log.info("POST %s %s",request.json['username'], request.json['password'])
+
 	users = db.view('byUsername/doc')
 
 	for user in users:
@@ -27,8 +28,14 @@ def login():
 			log.info("username : %s",user['value']['username'])
 			log.info("password : %s",user['value']['password'])
 			if(user['value']['username'] == username and user['value']['password'] == passwordHash):
-				log.info("match :)");
-				return jsonify(doc)
+				data=dict()
+				data['username']=user['value']['username']
+				data['uid']=user['value']['_id']
+				data['email']=user['value']['email']
+				data['hash']=user['value']['hash']
+				data['contacts']=user['value']['contacts']
+				data['fullname']=user['value']['fullname']
+				return jsonify(data)
 
 	return jsonify(success="false")
 
