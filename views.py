@@ -14,12 +14,31 @@ def index():
 def login():
 	log.info("Login function called.")
 	# Demo login, write function later.
-	return '{ \
-			"uid": "3d123352c8c4c8866f5158acc6000366", \
-			"fullname": "Jaseem Abid", \
-			"username": "jaseemabid", \
-			"hash": "40901f06ff8e7bb58e200630c613d647" \
-			}'
+	username = request.json['username']
+	password = request.json['password']
+	passwordHash = password # update later
+
+	log.info("POST %s %s",request.json['username'], request.json['password'])
+
+	users = db.view('byUsername/doc')
+
+	for user in users:
+		log.info("doc : %s",user['value']['_id'])
+		if(user.key == username):
+			log.info("username : %s",user['value']['username'])
+			log.info("password : %s",user['value']['password'])
+			if(user['value']['username'] == username and user['value']['password'] == passwordHash):
+				data=dict()
+				data['username']=user['value']['username']
+				data['uid']=user['value']['_id']
+				data['email']=user['value']['email']
+				data['hash']=user['value']['hash']
+				data['contacts']=user['value']['contacts']
+				data['fullname']=user['value']['fullname']
+				return jsonify(data)
+
+	return jsonify(success="false")
+
 def logout():
 	log.info("Logout function called.")
 	return jsonify(success="true")
