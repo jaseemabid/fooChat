@@ -13,7 +13,8 @@ fooChat.Models = {
 			email: "",
 			password: "",
 			username: "",
-			hash: 0
+			hash: 0,
+			from: "",
 		},
 		initialize: function () {
 

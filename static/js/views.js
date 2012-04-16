@@ -10,6 +10,9 @@ fooChat.Views = {
 		// function, cache it for a single contact
 		template: $('#template-contact').html(),
 		// Re-render the contact entry
+		events: {
+			"click": "filterMessage"
+		},
 		render: function () {
 			$(this.el).html(this.template.supplant(this.model.toJSON()));
 			return this;
@@ -17,6 +20,10 @@ fooChat.Views = {
 		initialize: function () {
 			this.model.bind('change', this.render, this);
 			this.model.bind('destroy', this.remove, this);
+		},
+		filterMessage: function () {
+			//console.log("Filtering for ", this.model.get('username'));
+			fooChat.activeUser.set('from', this.model.get('username'));
 		}
 	}),
 	MessageView: B.View.extend({
@@ -26,16 +33,24 @@ fooChat.Views = {
 		template: $('#template-message').html(),
 		// Re-render the contact entry
 		render: function () {
+			console.log("message view render");
 			$(this.el).html(this.template.supplant(this.model.toJSON()));
 			return this;
 		},
 		remove: function () {
+			console.log($(this.el));
 			$(this.el).slideUp();
 			return this;
 		},
 		initialize: function () {
 			this.model.bind('change', this.render, this);
 			this.model.bind('destroy', this.remove, this);
+			fooChat.messages.bind('reset', this.remove, this);
+			fooChat.activeUser.bind('change:from', function () {
+				fooChat.messages.reset();
+				fooChat.messages.initialize([], fooChat.activeUser);
+				fooChat.messages.fetch();
+			}, this);
 		}
 	}),
 	LoginView: B.View.extend({
