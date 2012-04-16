@@ -31,6 +31,7 @@ fooChat.Routers = {
 		},
 		login: function () {
 			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
+			fooChat.topBar = new fooChat.Views.TopBarView(fooChat.activeUser);
 			if (fooChat.activeUser.get('uid') !== 0) {
 				this.navigate("/", true);
 			} else {
