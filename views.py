@@ -13,12 +13,10 @@ def index():
 
 def login():
 	log.info("Login function called.")
-	# Demo login, write function later.
 	username = request.json['username']
 	password = request.json['password']
-	passwordHash = password # update later
-
-	users = db.view('byUsername/doc?key="%s"'%username)
+	passwordHash = password
+	user = db.view('byUsername/doc',key=username).rows[0]
 	if(user.key == username):
 		if(user['value']['username'] == username and user['value']['password'] == passwordHash):
 			data=dict()
@@ -29,7 +27,6 @@ def login():
 			data['contacts']=user['value']['contacts']
 			data['fullname']=user['value']['fullname']
 			return jsonify(data)
-
 	return jsonify(success="false")
 
 def logout():
