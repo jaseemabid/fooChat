@@ -49,10 +49,12 @@ fooChat.Models = {
 		url: '/api/message/new/',
 		// Default attributes for the contact
 		defaults: {
-			// Ensure that each photo created has an `src`.
+			type: "message",
 			message: "fooBar message",
-			from: "chatBot",
-			timestamp: now
+			from: { "username":  "", "uid" : "0"},
+			to: { "username":  "", "uid" : "0"},
+			timestamp: (new Date()).getTime(),
+			read:false
 		},
 		initialize: function () {
 			var hash = fooChat.contacts.findHash(this.get('from')) || fooChat.activeUser.get('hash');

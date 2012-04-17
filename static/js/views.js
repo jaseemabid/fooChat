@@ -129,7 +129,13 @@ fooChat.Views = {
 			}
 			fooChat.messages.create({
 				"message": this.$el.val(),
-				"from": fooChat.activeUser.get('username')
+				"from": {
+					"username": fooChat.activeUser.get('username'),
+					"uid": fooChat.activeUser.get('uid')
+				},
+				to : {
+					"username" : fooChat.activeUser.get('from')
+				}
 			});
 			this.$el.val('');
 		},
