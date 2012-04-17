@@ -1,5 +1,6 @@
 from flask import jsonify, request
-
+import hashlib
+import settings
 
 def get():
 	if request.method == 'GET':
@@ -12,3 +13,6 @@ def post():
 		return True
 	else:
 		return False
+
+def encryptPassword(password):
+	return hashlib.sha1(password+settings.salt).hexdigest()
