@@ -46,7 +46,7 @@ def register():
 
 
 def newMessage():
-	if post():
+	if commons.post():
 		data=dict()
 		data['type'] = "message"
 		data['message'] = request.json['message']
