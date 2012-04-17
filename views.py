@@ -18,20 +18,17 @@ def login():
 	password = request.json['password']
 	passwordHash = password # update later
 
-
-	users = db.view('byUsername/doc')
-
-	for user in users:
-		if(user.key == username):
-			if(user['value']['username'] == username and user['value']['password'] == passwordHash):
-				data=dict()
-				data['username']=user['value']['username']
-				data['uid']=user['value']['_id']
-				data['email']=user['value']['email']
-				data['hash']=user['value']['hash']
-				data['contacts']=user['value']['contacts']
-				data['fullname']=user['value']['fullname']
-				return jsonify(data)
+	users = db.view('byUsername/doc?key="%s"'%username)
+	if(user.key == username):
+		if(user['value']['username'] == username and user['value']['password'] == passwordHash):
+			data=dict()
+			data['username']=user['value']['username']
+			data['uid']=user['value']['_id']
+			data['email']=user['value']['email']
+			data['hash']=user['value']['hash']
+			data['contacts']=user['value']['contacts']
+			data['fullname']=user['value']['fullname']
+			return jsonify(data)
 
 	return jsonify(success="false")
 
