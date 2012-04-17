@@ -1,5 +1,5 @@
 from flask import render_template, flash, url_for, redirect, json, jsonify, request
-from commons import get, post
+import commons
 import settings
 import couchdb
 import logging as log
@@ -14,11 +14,10 @@ def index():
 def login():
 	log.info("Login function called.")
 	username = request.json['username']
-	password = request.json['password']
-	passwordHash = password
+	password = commons.encryptPassword(request.json['password'])
 	user = db.view('byUsername/doc',key=username).rows[0]
 	if(user.key == username):
-		if(user['value']['username'] == username and user['value']['password'] == passwordHash):
+		if(user['value']['username'] == username and user['value']['password'] == password):
 			data=dict()
 			data['username']=user['value']['username']
 			data['uid']=user['value']['_id']
@@ -34,10 +33,10 @@ def logout():
 	return jsonify(success="true")
 
 def register():
-	if post():
+	if commons.post():
 		data=dict()
 		data['username']=request.args.get('username')
-		data['password']=request.args.get('password')
+		data['password']=commons.encryptPassword(request.args.get('password'))
 		data['email']=request.args.get('email')
 		db.save(data)
 		if data.has_key('_id'):
