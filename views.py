@@ -50,3 +50,22 @@ def register():
 			return jsonify(success='true',data=data)
 		else:
 			return jsonify(success="false")
+
+
+def newMessage():
+	if post():
+		data=dict()
+		data['type'] = "message"
+		data['message'] = request.json['message']
+		data['from'] = dict()
+		data['to'] = dict()
+		data['from']['username'] = request.json['from']['username']
+		data['from']['uid'] = request.json['from']['uid']
+		data['to']['username'] = request.json['to']['username']
+		data['to']['uid'] = "3d123352c8c4c8866f5158acc60010d7" # Default to vipin, rewrite.
+		data['timestamp'] = request.json['timestamp']
+		data['read'] = "false"
+		db.save(data)
+		return jsonify(success="true") # Return data
+	else :
+		return jsonify(success="false")
