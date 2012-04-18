@@ -1,12 +1,12 @@
 from flask import render_template, flash, url_for, redirect, json, jsonify, request
+from models import db
 import commons
 import settings
-import couchdb
 import logging as log
+import hashlib
 log.basicConfig(level=log.DEBUG)
 
-couch = couchdb.Server(settings.couchServer)
-db = couch[settings.database]
+
 
 def index():
 	return render_template('index.html')
@@ -16,16 +16,15 @@ def login():
 	username = request.json['username']
 	password = commons.encryptPassword(request.json['password'])
 	user = db.view('byUsername/doc',key=username).rows[0]
-	if(user.key == username):
-		if(user['value']['username'] == username and user['value']['password'] == password):
-			data=dict()
-			data['username']=user['value']['username']
-			data['uid']=user['value']['_id']
-			data['email']=user['value']['email']
-			data['hash']=user['value']['hash']
-			data['contacts']=user['value']['contacts']
-			data['fullname']=user['value']['fullname']
-			return jsonify(data)
+	if(user['value']['username'] == username and user['value']['password'] == password):
+		data=dict()
+		data['username']=user['value']['username']
+		data['uid']=user['value']['_id']
+		data['email']=user['value']['email']
+		data['hash']=user['value']['hash']
+		data['contacts']=user['value']['contacts']
+		data['fullname']=user['value']['fullname']
+		return jsonify(data)
 	return jsonify(success="false")
 
 def logout():
@@ -33,13 +32,18 @@ def logout():
 	return jsonify(success="true")
 
 def register():
-	if commons.post():
+	if commons.get():
 		data=dict()
+		data['type'] = "user"
 		data['username']=request.args.get('username')
 		data['password']=commons.encryptPassword(request.args.get('password'))
 		data['email']=request.args.get('email')
+		data['hash']=hashlib.sha1(request.args.get('email')).hexdigest()
+		data['fullname']=request.args.get('fullname')
+		data['contacts']=list()
 		db.save(data)
 		if data.has_key('_id'):
+			data['uid'] = data['_id']
 			return jsonify(success='true',data=data)
 		else:
 			return jsonify(success="false")
