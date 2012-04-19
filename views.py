@@ -12,7 +12,7 @@ def index():
 	return render_template('index.html')
 
 def login():
-	log.info("Login function called.")
+	log.info('Login function called.')
 	username = request.json['username']
 	password = commons.encryptPassword(request.json['password'])
 	user = db.view('byUsername/doc',key=username).rows[0]
@@ -25,16 +25,16 @@ def login():
 		data['contacts']=user['value']['contacts']
 		data['fullname']=user['value']['fullname']
 		return jsonify(data)
-	return jsonify(success="false")
+	return jsonify(success='false')
 
 def logout():
-	log.info("Logout function called.")
-	return jsonify(success="true")
+	log.info('Logout function called.')
+	return jsonify(success='true')
 
 def register():
 	if not commons.checkUsernameExists(request.json['username']):
 		data=dict()
-		data['type'] = "user"
+		data['type'] = 'user'
 		data['username']=request.json['username']
 		data['password']=commons.encryptPassword(request.json['password'])
 		data['email']=request.json['email']
@@ -47,30 +47,39 @@ def register():
 			# return jsonify(success='true',data=data)
 			return jsonify(success='true')
 		else:
-			return jsonify(success="false",  error="cant save in db")
+			return jsonify(success='false',  error='cant save in db')
 	else:
-			return jsonify(success="false", error="username exists")
+			return jsonify(success='false', error='username exists')
 		
-def add():
-	if commons.addContact(request.args.get('userId'),request.args.get('email')):
-		return jsonify(success="true")
+def addContact():
+	userId = request.json['userId']
+	email = request.json['email']
+	contactName, contactId = getUserDetails(email)
+	if contactName is not 0 and contactId is not 0:
+		if checkContactExists(userId,contactName,contactId) is False:
+			user=db[userId]
+			user['contacts'].append({'username':contactName,'hash':contactId})
+			db.save(user)
+			return jsonify(success='true')
+		else:
+			return jsonify(success='true',error='User already in contact list.')
 	else:
-		return jsonify(success="false")
+		return jsonify(success='true',error='User does not exist.')
 
 def newMessage():
 	if commons.post():
 		data=dict()
-		data['type'] = "message"
+		data['type'] = 'message'
 		data['message'] = request.json['message']
 		data['from'] = dict()
 		data['to'] = dict()
 		data['from']['username'] = request.json['from']['username']
 		data['from']['uid'] = request.json['from']['uid']
 		data['to']['username'] = request.json['to']['username']
-		data['to']['uid'] = "3d123352c8c4c8866f5158acc60010d7" # Default to vipin, rewrite.
+		data['to']['uid'] = '3d123352c8c4c8866f5158acc60010d7' # Default to vipin, rewrite.
 		data['timestamp'] = request.json['timestamp']
-		data['read'] = "false"
+		data['read'] = 'false'
 		db.save(data)
-		return jsonify(success="true") # Return data
+		return jsonify(success='true') # Return data
 	else :
-		return jsonify(success="false")
+		return jsonify(success='false')
