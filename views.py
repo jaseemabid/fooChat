@@ -54,7 +54,11 @@ def register():
 		else:
 				return jsonify(success="false")
 		
-
+def add():
+	if commons.addContact(request.args.get('userId'),request.args.get('contactName'),request.args.get('contactId')):
+		return jsonify(success="true")
+	else:
+		return jsonify(success="false")
 
 def newMessage():
 	if commons.post():
