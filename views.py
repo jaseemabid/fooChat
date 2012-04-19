@@ -10,6 +10,9 @@ log.basicConfig(level=log.DEBUG)
 
 def index():
 	return render_template('index.html')
+def registerui():
+	log.info("Register UI")
+	return render_template('register.html')
 
 def login():
 	log.info("Login function called.")
@@ -32,14 +35,14 @@ def logout():
 	return jsonify(success="true")
 
 def register():
-	if commons.get():
+	if commons.post():
 		data=dict()
 		data['type'] = "user"
-		data['username']=request.args.get('username')
-		data['password']=commons.encryptPassword(request.args.get('password'))
-		data['email']=request.args.get('email')
-		data['hash']=hashlib.sha1(request.args.get('email')).hexdigest()
-		data['fullname']=request.args.get('fullname')
+		data['username']=request.form.get('username')
+		data['password']=commons.encryptPassword(request.form.get('password'))
+		data['email']=request.form.get('email')
+		data['hash']=hashlib.sha1(request.form.get('email')).hexdigest()
+		data['fullname']=request.form.get('fullname')
 		data['contacts']=list()
 		db.save(data)
 		if data.has_key('_id'):
@@ -47,6 +50,7 @@ def register():
 			return jsonify(success='true',data=data)
 		else:
 			return jsonify(success="false")
+		
 
 
 def newMessage():
