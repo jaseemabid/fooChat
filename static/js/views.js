@@ -33,8 +33,7 @@ fooChat.Views = {
 		template: $('#template-message').html(),
 		// Re-render the contact entry
 		render: function () {
-			console.log("message view render");
-			$(this.el).html(this.template.supplant(this.model.toJSON()));
+			$('#messageBox').append($(this.el).html(this.template.supplant(this.model.toJSON())));
 			return this;
 		},
 		remove: function () {
