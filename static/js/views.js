@@ -89,11 +89,12 @@ fooChat.Views = {
 			this.render();
 		},
 		register: function (e) {
-			fooChat.activeUser.set('fullname', this.$el.find('#email').val());
+			fooChat.activeUser.set('fullname', this.$el.find('#fullname').val());
 			fooChat.activeUser.set('username', this.$el.find('#username').val());
 			fooChat.activeUser.set('password', this.$el.find('#password').val());
 			fooChat.activeUser.set('email', this.$el.find('#email').val());
 			fooChat.activeUser.set('id', null); // prevent PUT for POST
+			console.log(fooChat.activeUser.toJSON())
 			fooChat.activeUser.register();
 		},
 		render: function () {
@@ -123,7 +124,10 @@ fooChat.Views = {
 				return;
 			}
 			fooChat.contacts.create({
-				username: dom.val()
+				username: dom.val(),
+				email : dom.val(),
+				fullname : dom.val(),
+				uid : fooChat.activeUser.get('uid')
 			});
 			dom.val('');
 		},

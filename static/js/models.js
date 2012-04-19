@@ -48,7 +48,10 @@ fooChat.Models = {
 		// Default attributes for the contact
 		url: '/api/contacts/new/',
 		defaults: {
-			username: "fooBar"
+			username: "username",
+			fullname: "fullname",
+			email : "foo@bar.com",
+			uid: 0
 		},
 		initialize: function () {}
 	}),
