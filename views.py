@@ -48,7 +48,8 @@ def register():
 			db.save(data)
 			if data.has_key('_id'):
 				data['uid'] = data['_id']
-				return jsonify(success='true',data=data)
+				# return jsonify(success='true',data=data)
+				return jsonify(success='true')
 			else:
 				return jsonify(success="false")
 		else:
