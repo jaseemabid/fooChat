@@ -27,7 +27,6 @@ fooChat.Collections = {
 	MessageList: B.Collection.extend({
 		// Reference to this collection's model.
 		model: fooChat.Models.Message,
-		url: '{couchServer}/{database}/_design/byUserId/_view/inbox?key="{uid}"',
 		parse: function (response) {
 			return _.pluck(response.rows, 'value');
 		},
@@ -38,7 +37,7 @@ fooChat.Collections = {
 			if (fooChat.activeUser.get('from') === '') {
 				this.url = '{couchServer}/{database}/_design/byUserId/_view/inboxFilter?startkey=["{uid}","0"]&endkey=["{uid}","z"]';
 			} else {
-				this.url = '{couchServer}/{database}/_design/byUserId/_view/inboxFilter?startkey=["{uid}","{from}"]&endkey=["{uid}","{from}"]';
+				this.url = '{couchServer}/{database}/_design/byUserId/_view/inboxFilter?startkey=["{uid}","{chat}"]&endkey=["{uid}","{chat}"]';
 			}
 			this.url = this.url.supplant(args.toJSON());
 			console.log(this.url.supplant(args.toJSON()));

@@ -23,7 +23,7 @@ fooChat.Views = {
 		},
 		filterMessage: function () {
 			//console.log("Filtering for ", this.model.get('username'));
-			fooChat.activeUser.set('from', this.model.get('username'));
+			fooChat.activeUser.set('chat', this.model.get('username'));
 		}
 	}),
 	MessageView: B.View.extend({
@@ -148,6 +148,7 @@ fooChat.Views = {
 		},
 		initialize: function () {
 			this.render();
+			fooChat.activeUser.bind('change:chat', this.render, this);
 		},
 		addMessage: function (e) {
 			if (e.keyCode !== 13) {
@@ -164,13 +165,15 @@ fooChat.Views = {
 					"uid": fooChat.activeUser.get('uid')
 				},
 				to : {
-					"username" : fooChat.activeUser.get('from')
+					"username" : fooChat.activeUser.get('chat')
 				}
 			});
 			this.$el.val('');
 		},
 		render: function () {
-			$("div#messageBox").html('').append($(this.el));
+			if (fooChat.activeUser.get('chat')) {
+				$("div#messageBox").html('').append($(this.el));
+			}
 			return this;
 		}
 	}),
