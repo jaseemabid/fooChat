@@ -10,9 +10,6 @@ log.basicConfig(level=log.DEBUG)
 
 def index():
 	return render_template('index.html')
-def registerui():
-	log.info("Register UI")
-	return render_template('register.html')
 
 def login():
 	log.info("Login function called.")
@@ -35,25 +32,24 @@ def logout():
 	return jsonify(success="true")
 
 def register():
-	if commons.post():
-		if not commons.checkUsernameExists(request.form.get('username')):
-			data=dict()
-			data['type'] = "user"
-			data['username']=request.form.get('username')
-			data['password']=commons.encryptPassword(request.form.get('password'))
-			data['email']=request.form.get('email')
-			data['hash']=hashlib.sha1(request.form.get('email')).hexdigest()
-			data['fullname']=request.form.get('fullname')
-			data['contacts']=list()
-			db.save(data)
-			if data.has_key('_id'):
-				data['uid'] = data['_id']
-				# return jsonify(success='true',data=data)
-				return jsonify(success='true')
-			else:
-				return jsonify(success="false")
+	if not commons.checkUsernameExists(request.json['username']):
+		data=dict()
+		data['type'] = "user"
+		data['username']=request.json['username']
+		data['password']=commons.encryptPassword(request.json['password'])
+		data['email']=request.json['email']
+		data['hash']=hashlib.sha1(request.json['email']).hexdigest()
+		data['fullname']=request.json['fullname']
+		data['contacts']=list()
+		db.save(data)
+		if data.has_key('_id'):
+			data['uid'] = data['_id']
+			# return jsonify(success='true',data=data)
+			return jsonify(success='true')
 		else:
-				return jsonify(success="false")
+			return jsonify(success="false",  error="cant save in db")
+	else:
+			return jsonify(success="false", error="username exists")
 		
 def add():
 	if commons.addContact(request.args.get('userId'),request.args.get('email')):
