@@ -74,7 +74,7 @@ def newMessage():
 		data['from']['username'] = request.json['from']['username']
 		data['from']['uid'] = request.json['from']['uid']
 		data['to']['username'] = request.json['to']['username']
-		data['to']['uid'] = '3d123352c8c4c8866f5158acc60010d7' # Default to vipin, rewrite.
+		data['to']['uid'] = commons.emailHash()
 		data['timestamp'] = request.json['timestamp']
 		data['read'] = 'false'
 		db.save(data)
