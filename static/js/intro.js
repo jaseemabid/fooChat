@@ -19,7 +19,7 @@
 		location = window.location,
 		fooChat = {  // The main namespace object to be exposed.
 			config : {
-				couchServer: "http://localhost:9000",
+				couchServer: "http://foochat.iriscouch.com",
 				database : "foochat"
 			}	
 		};

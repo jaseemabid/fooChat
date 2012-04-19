@@ -6,8 +6,6 @@ import logging as log
 import hashlib
 log.basicConfig(level=log.DEBUG)
 
-
-
 def index():
 	return render_template('index.html')
 
@@ -47,25 +45,24 @@ def register():
 			# return jsonify(success='true',data=data)
 			return jsonify(success='true')
 		else:
-			return jsonify(success='false',  error='cant save in db')
+			return jsonify(success='false', error='cant save in db')
 	else:
 			return jsonify(success='false', error='username exists')
-		
+
 def addContact():
-	
-	userId = request.json['userId']
+	userId = request.json['uid']
 	email = request.json['email']
-	contactName, contactId = getUserDetails(email)
+	contactName, contactId = commons.getUserDetails(email)
 	if contactName is not 0 and contactId is not 0:
-		if checkContactExists(userId,contactName,contactId) is False:
+		if commons.checkContactExists(userId,contactName,contactId) is False:
 			user=db[userId]
 			user['contacts'].append({'username':contactName,'hash':contactId})
 			db.save(user)
 			return jsonify(success='true')
 		else:
-			return jsonify(success='true',error='User already in contact list.')
+			return jsonify(success='false',error='User already in contact list.')
 	else:
-		return jsonify(success='true',error='User does not exist.')
+		return jsonify(success='false',error='User does not exist.')
 
 def newMessage():
 	if commons.post():
