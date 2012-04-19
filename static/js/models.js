@@ -6,7 +6,6 @@ var now = (new Date()).toString();
 
 fooChat.Models = {
 	ActiveUser: B.Model.extend({
-		url: '/api/user/login/',
 		defaults: {
 			uid: 0,
 			fullname: "to fooChat",
@@ -17,18 +16,26 @@ fooChat.Models = {
 			from: "",
 		},
 		initialize: function () {
-
 			if (this.get('uid') === 0 && localStorage["session"]) {
 				var model = JSON.parse(localStorage["session"]);
 				this.set(model);
 			}
-
 		},
 		login: function () {
+			this.url = '/api/user/login/';
 			this.save("foo", "bar", {
 				"success": function () {
-					console.log("model save callback");
 					localStorage["session"] = JSON.stringify(fooChat.activeUser.toJSON());
+				}
+			});
+		},
+		register: function () {
+			this.url = '/api/user/register/';
+			this.save("foo", "bar", {
+				"success": function (response) {
+					if (response.get('success') === "true" || response.get('success') === true) {
+						fooChat.appRouter.navigate('/login', true);
+					}
 				}
 			});
 		},
@@ -51,10 +58,16 @@ fooChat.Models = {
 		defaults: {
 			type: "message",
 			message: "fooBar message",
-			from: { "username":  "", "uid" : "0"},
-			to: { "username":  "", "uid" : "0"},
+			from: {
+				"username": "",
+				"uid": "0"
+			},
+			to: {
+				"username": "",
+				"uid": "0"
+			},
 			timestamp: (new Date()).getTime(),
-			read:false
+			read: false
 		},
 		initialize: function () {
 			var hash = fooChat.contacts.findHash(this.get('from')) || fooChat.activeUser.get('hash');
