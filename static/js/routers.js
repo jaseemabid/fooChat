@@ -9,6 +9,7 @@ fooChat.Routers = {
 			'': 'home',
 			'blank': 'blank',
 			'login': 'login',
+			'register': 'register',
 			'logout': 'logout'
 		},
 		initialize: function () {
@@ -36,6 +37,15 @@ fooChat.Routers = {
 				this.navigate("/", true);
 			} else {
 				fooChat.loginView = new fooChat.Views.LoginView();
+			}
+		},
+		register: function () {
+			fooChat.activeUser = fooChat.activeUser || new fooChat.Models.ActiveUser();
+			fooChat.topBar = new fooChat.Views.TopBarView(fooChat.activeUser);
+			if (fooChat.activeUser.get('uid') !== 0) {
+				this.navigate("/", true);
+			} else {
+				fooChat.registerView = new fooChat.Views.RegisterView();
 			}
 		},
 		logout: function () {
