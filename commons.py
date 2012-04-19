@@ -17,23 +17,23 @@ def post():
 
 def encryptPassword(password):
 	return hashlib.sha1(password+settings.salt).hexdigest()
-	
+
 def checkUsernameExists(username):
 	user = db.view('byUsername/userId',key=username)
-	if  len(user.rows)  > 0:
+	if len(user.rows) > 0:
 		return True
 	else:
 		return False
-		
+
 def emailHash(email):
 	return hashlib.sha1(email).hexdigest()
-			
+
 def checkContactExists(userId,contactName,contactId):
 	user = db.view('byUserId/contacts',key=userId).rows[0]
 	return user["value"].__contains__({"username":contactName,"hash":contactId})
-	
+
 def addContact(userId,email):
-	contactName, contactId =  getUserDetails(email)
+	contactName, contactId = getUserDetails(email)
 	if contactName is not 0 and contactId is not 0:
 		if checkContactExists(userId,contactName,contactId) is False:
 			user=db[userId]
@@ -45,20 +45,16 @@ def addContact(userId,email):
 	else:
 		return False
 
-def  checkUserExists(email):
+def checkUserExists(email):
 	user = db.view('byEmail/userDetails',key=email)
-	if  len(user.rows)  > 0:
+	if len(user.rows) > 0:
 		return True
 	else:
 		return False
 		
-def  getUserDetails(email):
+def getUserDetails(email):
 	if checkUserExists(email) :
 		user = db.view('byEmail/userDetails',key=email).rows[0] 
 		return (user["value"][0],user["value"][1])
 	else:
 		return (0,0)
-  
-		
-			
-			
