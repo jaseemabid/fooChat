@@ -9,7 +9,8 @@ URL Settings
 app.add_url_rule('/', 'index', view_func = views.index)
 app.add_url_rule('/api/user/login/', 'login', view_func = views.login, methods=['GET', 'POST'])
 app.add_url_rule('/api/user/logout/', 'logout', view_func = views.logout)
-app.add_url_rule('/api/user/register/', 'register', view_func = views.register, methods=['GET'])
+app.add_url_rule('/api/user/register/', 'register', view_func = views.register, methods=['POST'])
+app.add_url_rule('/register/', 'reg', view_func = views.registerui)
 app.add_url_rule('/api/message/new/', 'newMessage', view_func = views.newMessage, methods=['POST'])
 
 if __name__ == '__main__':
