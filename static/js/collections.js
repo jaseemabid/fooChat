@@ -35,9 +35,9 @@ fooChat.Collections = {
 			console.log("from")
 			console.log(fooChat.activeUser.get('from'));
 			if (fooChat.activeUser.get('from') === '') {
-				this.url = '{couchServer}/{database}/_design/byUserId/_view/inboxFilter?startkey=["{uid}","0"]&endkey=["{uid}","z"]';
+				this.url = '{couchServer}/{database}/_design/byUserId/_view/chat?startkey=["{uid}","0"]&endkey=["{uid}","z"]';
 			} else {
-				this.url = '{couchServer}/{database}/_design/byUserId/_view/inboxFilter?startkey=["{uid}","{chat}"]&endkey=["{uid}","{chat}"]';
+				this.url = '{couchServer}/{database}/_design/byUserId/_view/chat?startkey=["{uid}","{chat}"]&endkey=["{uid}","{chat}"]';
 			}
 			this.url = this.url.supplant(args.toJSON());
 			console.log(this.url.supplant(args.toJSON()));
