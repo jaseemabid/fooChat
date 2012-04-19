@@ -26,7 +26,7 @@ def checkUsernameExists(username):
 		return False
 
 def emailHash(email):
-	return hashlib.sha1(email).hexdigest()
+	return hashlib.md5(email).hexdigest()
 
 def checkContactExists(userId,contactName,contactId):
 	user = db.view('byUserId/contacts',key=userId).rows[0]

@@ -38,7 +38,7 @@ def register():
 		data['username']=request.json['username']
 		data['password']=commons.encryptPassword(request.json['password'])
 		data['email']=request.json['email']
-		data['hash']=hashlib.sha1(request.json['email']).hexdigest()
+		data['hash']=commons.emailHash(data['email'])
 		data['fullname']=request.json['fullname']
 		data['contacts']=list()
 		db.save(data)
@@ -52,6 +52,7 @@ def register():
 			return jsonify(success='false', error='username exists')
 		
 def addContact():
+	
 	userId = request.json['userId']
 	email = request.json['email']
 	contactName, contactId = getUserDetails(email)
