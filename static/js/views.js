@@ -65,10 +65,36 @@ fooChat.Views = {
 			this.render();
 		},
 		login: function (e) {
-			fooChat.activeUser.set('username', this.$el.find('input[type="text"]').val());
-			fooChat.activeUser.set('password', this.$el.find('input[type="password"]').val());
+			fooChat.activeUser.set('username', this.$el.find('#username').val());
+			fooChat.activeUser.set('password', this.$el.find('#password').val());
 			fooChat.activeUser.set('id', null); // prevent PUT for POST
 			fooChat.activeUser.login();
+		},
+		render: function () {
+			$('ul#dashBoard').remove();
+			$('div#sideBar').html('');
+			$("div#messageBox").html('').append($(this.el).html(this.template.supplant({})));
+			return this;
+		}
+	}),
+	RegisterView: B.View.extend({
+		tagName: "form",
+		className: "well form-vertical",
+		id: "registerForm",
+		template: $('#template-register').html(),
+		events: {
+			"click button": "register"
+		},
+		initialize: function () {
+			this.render();
+		},
+		register: function (e) {
+			fooChat.activeUser.set('fullname', this.$el.find('#email').val());
+			fooChat.activeUser.set('username', this.$el.find('#username').val());
+			fooChat.activeUser.set('password', this.$el.find('#password').val());
+			fooChat.activeUser.set('email', this.$el.find('#email').val());
+			fooChat.activeUser.set('id', null); // prevent PUT for POST
+			fooChat.activeUser.register();
 		},
 		render: function () {
 			$('ul#dashBoard').remove();

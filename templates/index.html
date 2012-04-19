@@ -36,11 +36,45 @@
 </script>
 
 <script id="template-login" type="text/template">
-<form class="well form-vertical"><div class="input-prepend">
-<label>Username</label><span class="add-on"><i class="icon-user"></i></span><input type="text" class="span10" placeholder="Username">
-</div><div class="input-prepend">
-<label>Password</label><span class="add-on"><i class="icon-lock"></i></span><input type="password" class="span10" placeholder="Username">
-</div><button type="submit" class="btn">Sign in</button></form>
+<form class="well form-vertical">
+	<div class="input-prepend">
+		<label>Username</label>
+		<span class="add-on"><i class="icon-user"></i></span>
+		<input type=text class=span10 id=username placeholder=Username>
+	</div>
+	<div class="input-prepend">
+		<label>Password</label>
+		<span class="add-on"><i class="icon-lock"></i></span>
+		<input type=password class="span10" id=password placeholder=Password>
+	</div>
+	<button type="submit" class="btn">Sign in</button>
+</form>
+</script>
+
+<script id="template-register" type="text/template">
+<form class="well form-vertical">
+	<div class="input-prepend">
+		<label>Full Name</label>
+		<span class="add-on"><i class="icon-user"></i></span>
+		<input type=text class="span10" id=email placeholder="Full Name">
+	</div>
+	<div class="input-prepend">
+		<label>Username</label>
+		<span class="add-on"><i class="icon-star"></i></span>
+		<input type=text class=span10 id=username placeholder=Username>
+	</div>
+	<div class="input-prepend">
+		<label>Password</label>
+		<span class="add-on"><i class="icon-lock"></i></span>
+		<input type=password class="span10" id=password placeholder=Password>
+	</div>
+	<div class="input-prepend">
+		<label>E-mail</label>
+		<span class="add-on"><i class="icon-envelope"></i></span>
+		<input type=text class="span10" id=email placeholder=E-mail>
+	</div>
+	<button type="submit" class="btn">Register</button>
+</form>
 </script>
 
 		<div class="container-fluid">
