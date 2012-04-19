@@ -11,7 +11,7 @@ app.add_url_rule('/api/user/login/', 'login', view_func = views.login, methods=[
 app.add_url_rule('/api/user/logout/', 'logout', view_func = views.logout)
 app.add_url_rule('/api/user/register/', 'register', view_func = views.register, methods=['GET', 'POST'])
 app.add_url_rule('/api/message/new/', 'newMessage', view_func = views.newMessage, methods=['POST'])
-app.add_url_rule('/api/addcontact/','addcontact',view_func=views.add,methods=['GET'])
+app.add_url_rule('/api/contacts/new/','addcontact',view_func=views.addContact,methods=['POST'])
 
 if __name__ == '__main__':
 	app.debug = True;
