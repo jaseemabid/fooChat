@@ -38,10 +38,15 @@ def checkUserExists(email):
 		return True
 	else:
 		return False
-		
+
 def getUserDetails(email):
 	if checkUserExists(email) :
 		user = db.view('byEmail/userDetails',key=email).rows[0] 
 		return (user["value"][0],user["value"][1])
 	else:
 		return (0,0)
+
+def getUserIdFromUsername(username):
+	user = db.view('byUsername/userId',key=username).rows[0]
+	return user["value"]
+
