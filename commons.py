@@ -32,19 +32,6 @@ def checkContactExists(userId,contactName,contactId):
 	user = db.view('byUserId/contacts',key=userId).rows[0]
 	return user["value"].__contains__({"username":contactName,"hash":contactId})
 
-def addContact(userId,email):
-	contactName, contactId = getUserDetails(email)
-	if contactName is not 0 and contactId is not 0:
-		if checkContactExists(userId,contactName,contactId) is False:
-			user=db[userId]
-			user["contacts"].append({"username":contactName,"hash":contactId})
-			db.save(user)
-			return True
-		else:
-			return False
-	else:
-		return False
-
 def checkUserExists(email):
 	user = db.view('byEmail/userDetails',key=email)
 	if len(user.rows) > 0:
