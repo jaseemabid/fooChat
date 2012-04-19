@@ -36,20 +36,23 @@ def logout():
 
 def register():
 	if commons.post():
-		data=dict()
-		data['type'] = "user"
-		data['username']=request.form.get('username')
-		data['password']=commons.encryptPassword(request.form.get('password'))
-		data['email']=request.form.get('email')
-		data['hash']=hashlib.sha1(request.form.get('email')).hexdigest()
-		data['fullname']=request.form.get('fullname')
-		data['contacts']=list()
-		db.save(data)
-		if data.has_key('_id'):
-			data['uid'] = data['_id']
-			return jsonify(success='true',data=data)
+		if not commons.checkUsernameExists(request.form.get('username')):
+			data=dict()
+			data['type'] = "user"
+			data['username']=request.form.get('username')
+			data['password']=commons.encryptPassword(request.form.get('password'))
+			data['email']=request.form.get('email')
+			data['hash']=hashlib.sha1(request.form.get('email')).hexdigest()
+			data['fullname']=request.form.get('fullname')
+			data['contacts']=list()
+			db.save(data)
+			if data.has_key('_id'):
+				data['uid'] = data['_id']
+				return jsonify(success='true',data=data)
+			else:
+				return jsonify(success="false")
 		else:
-			return jsonify(success="false")
+				return jsonify(success="false")
 		
 
 
