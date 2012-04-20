@@ -71,7 +71,8 @@
 
 
 	\section{Inspiration}
-	The idea for this project evolved from the basic concepts of chat messengers like gtalk but with a very low message delivery time
+	The idea for this project evolved from the basic concepts of chat messengers like gtalk but with a very low message delivery time. Foo is a sample name for absolutely anything, which includes programs, files etc..  Nowadays majority of the population use chat messengers frequently for easy communication among each other and because of this we felt the necessity to bring about a real time chat system that 
+facilitates the same.
 
 
 	\section{The database and data interchange format}
@@ -109,13 +110,13 @@
 			"_id": "4e75a4a58c975ee80...",
 			"_rev": "1-063dc160a0e67567...",
 			"from": {
-				"username": "jaseemabid",
+				"username": "abc",
 				"uid": "4e75a4a58c975ee..."
 			},
 			"read": "false",
 			"timestamp": 1334860312524,
 			"to": {
-				"username": "jaseemabid",
+				"username": "abc",
 				"uid": "4e75a4a58c975ee..."
 			},
 			"message": "Hello world :)",
@@ -178,7 +179,7 @@
 \section{Code explanation}
 
 \paragraph{settings.py}
-his file holds application default settings where we define the database name and a pointer to the iris server. We include a random hash value, which is used to hash the password  for security. 
+This file holds application default settings where we define the database name and a pointer to the iris server. We include a random hash value, which is used to hash the password  for security. 
 \paragraph{models.py}
 The database is accessed in different files using models.py, where the database is explicitly declared.
 \paragraph{commons.py}
@@ -194,6 +195,20 @@ This file specifies all the url for the functions defined in 'views.py' and also
 
 
 \section{CONCLUSION}
-With this project, we developed a realtime chat system called FooChat.
+		With this project, we were thus able to develop a realtime chat system called FooChat with which a user can login using his username and password if it exists. If a user doesn't exist he will have to register and then login with the username and password he created. A user once logged in can send messages to the contacts that he has added. If he wants to add a new contact the email id of the contact to be added is provided by the user. All these functions are written in python and JSON formats which are easy to understand. Evrytime a user tries to login or register the data is obtained from the database (http://foochat.iriscouch.com).  We have developed the logic for functions in python files using the "views" present in the database.
+		
+		The implementation of this chat system can be extended further by including the option for a group chat, sharing of files and so on.
+		
+		We were able to learn new things through this project and it gave us a better understanding of how a chat system really works
+
+
+\section{REFERENCES}
+		1. http://couchdb.apache.org/
+		2.http://guide.couchdb.org/
+		3.http://flask.pocoo.org/
+		4.http://www.json.org/
+		5. Textbook -  How To Think Like a Computer Scientist- by Allen Downey,  Jeffrey Elkner and Chris Meyers
+
 
 \end{document}
+
