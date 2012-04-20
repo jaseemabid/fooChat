@@ -1,0 +1,199 @@
+\documentclass[a4paper,11pt,conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\title{A realtime chat application using flat databases and long polling}
+\IEEEspecialpapernotice{CSU398-MINI PROJECT}
+\date{\today}
+
+\author{
+	\IEEEauthorblockN{Jaseem Abid}
+	\IEEEauthorblockA{B090264CS \\ jaseemabid@gmail.com}
+\and 
+	\IEEEauthorblockN{Irene George}
+	\IEEEauthorblockA{B090234CS \\ plasid\_91@yahoo.co.in}
+\and 
+	\IEEEauthorblockN{Jincy Abraham}
+	\IEEEauthorblockA{B090238CS \\ jincy.a@gmail.com }
+\and
+	\IEEEauthorblockN{Gayathri PP}
+	\IEEEauthorblockA{B090412CS \\ pp.gayathri4u2@gmail.com }
+}
+
+
+
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+	language=JavaScript,
+	backgroundcolor=\color{white},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b
+}
+
+
+\begin{document}
+	\maketitle
+	\vspace{100px}
+
+	\section{Introduction}
+
+	Online chat refers to any kind of communication over the Internet, that offers a real-time direct transmission of text-based messages from sender to receiver. Hence the delay for visual access to the sent message shall not hamper the flow of communications in any of the directions.
+
+	FooChat is a real time chat system written in Python and JavaScript. Communication in the web is primarily with IMs, emails, and IRCs. There is always a delay between sending a message from a sender and receiving it at the receiver side. A real-time system tries to reduce this time to the minimum, usually to a very low and negligible value. It makes use of a central server which allows users to chat with each other. This chat system has a very low message delivery time by using a low latency, document oriented database - couchDB and long polling the data. The data transfer across the network is kept at a minimal level using JSON data interchange format. The mapReduce code at the server, and the JSON parse and UI code at client are written in JavaScript.The couchDB is used for persistent storage of documents, and JSON data interchange format for data exchange between client and server. Nginx webserver is used to deliver content and static files.
+
+	We follow an MVC style architectural pattern. The server side python code uses Flask framework and traditional Models, Views and Controllers. Client side code in JavaScript uses Backbone.js library to implement Model - View - Collections
+
+
+	\section{Inspiration}
+	The idea for this project evolved from the basic concepts of chat messengers like gtalk but with a very low message delivery time
+
+
+	\section{The database and data interchange format}
+
+		\subsection{CouchDB}
+
+		Apache CouchDB, commonly referred to as CouchDB, is an open source database that focuses on ease of use and on being "a database that completely embraces the web".It is a NoSQL database that uses JSON to store data, JavaScript as its as its query language using  MapReduce and HTTP for an API One of its distinguishing features is easy replication. CouchDB was first released in 2005 and later became an Apache project in 2008.
+		Unlike in a relational database, CouchDB does not store data and relationships in tables. Instead, each database is a collection of independent documents. Each document maintains its own own data and self-contained schema. An application may access multiple databases, such as one stored on a user's mobile phone and another on a server. Document metadata contains revision information, making it possible to merge any differences that may have occurred while the databases were disconnected.
+
+		\subsubsection{Features}
+
+			\paragraph{Document Storage}
+			CouchDB stores data as "documents", as one or more field/value pairs expressed as JSON. Field values can be simple things like strings, numbers, or dates. But you can also use ordered lists and associative arrays. Every document in a CouchDB database has a unique id and there is no required document schema.
+
+			\paragraph{Map/Reduce Views and Indexes}
+			The data stored is structured using views. In CouchDB, each view is constructed by a JavaScript function that acts as the Map half of a map/reduce operation. The function takes a document and transforms it into a single value which it returns. CouchDB can index views and keep those indexes updated as documents are added, removed, or updated.
+
+			\paragraph{REST API}
+			All items have a unique URI that gets exposed via HTTP. REST uses the HTTP methods POST, GET, PUT and DELETE for the four basic CRUD(Create, Read, Update, Delete) operations on all resources.
+
+			\paragraph{Eventual Consistency}
+			CouchDB guarantees eventual consistency to be able to provide both availability and partition tolerance.
+
+			\paragraph{Built for Offline}
+			CouchDB can replicate to devices (like smartphones) that can go offline and handle data sync for you when the device is back online. CouchDB offers also a built-in admin interface accessible via web called Futon.
+
+		\subsubsection{JSON}
+
+			JSON stands for JavaScript Object Notation which is used for human-readable data interchange.It is derived from the JavaScript scripting language for representing simple data structures and associative arrays, called objects. The codes that make use of the JSON formats are explained throughout the course of this report.
+
+
+		\medskip
+		\begin{lstlisting}[caption=Example JSON from the application DB]
+		{
+			"_id": "4e75a4a58c975ee80...",
+			"_rev": "1-063dc160a0e67567...",
+			"from": {
+				"username": "jaseemabid",
+				"uid": "4e75a4a58c975ee..."
+			},
+			"read": "false",
+			"timestamp": 1334860312524,
+			"to": {
+				"username": "jaseemabid",
+				"uid": "4e75a4a58c975ee..."
+			},
+			"message": "Hello world :)",
+			"type": "message"
+		}
+		\end{lstlisting}
+
+	\section{Languages and frameworks}
+
+		\subsection{Python}
+		Python is a general-purpose, high-level programming language whose design philosophy emphasizes code readability.Python supports multiple programming paradigms, primarily but not limited to object-oriented, imperative and, to a lesser extent, functional programming styles. Like other dynamic languages, Python is often used as a scripting language, but is also used in a wide range of non-scripting contexts. Using third-party tools, Python code can be packaged into standalone executable programs. Python interpreters are available for many operating systems.
+
+		Most of the code that deals with the data interaction with database involves python programming language with JSON formats also implemented. The main files that make use of python language are 'main.py' , 'views.py' , 'commons.py' , 'models.py' and  'settings.py' which are further explained later in this report. 
+
+		\subsection{Flask}
+		Flask is a web application framework used for python language. Flask is called a microframework because it keeps the core simple but extensible. There is no database abstraction layer, no form validation or anything else where different libraries already exist that can handle that. However Flask knows the concept of extensions that can add this functionality into the  application as if it was implemented in Flask itself.
+		The main advantage is flexibility, as it can easily adapt to changing needs or new technologies without a huge drawback which would occur in full stack frameworks. Another point would be the documentation and the possibility to easily contribute to Flask as they now all use github or bitbucket. There are currently extensions for object-relational mappers, form validation, upload handling, various open authentication technologies and more. 
+
+
+	\section{CODE STRUCTURE AND API}
+		\medskip
+		\begin{lstlisting}[caption=Code structure]
+			.
+			|-- commons.py
+			|-- defaultsettings.py
+			|-- main.py
+			|-- Makefile
+			|-- models.py
+			|-- README.md
+			|-- settings.py
+			|-- static
+			|   |-- css
+			|   |   |-- bootstrap.min.css
+			|   |   |-- DroidSans.woff
+			|   |   `-- style.less
+			|   |-- img
+			|   |   `-- glyphicons-halflings.png
+			|   `-- js
+			|       |-- backbone-min.js
+			|       |-- bootstrap.min.js
+			|       |-- collections.js
+			|       |-- core.js
+			|       |-- foochat.js
+			|       |-- foochat.min.js
+			|       |-- intro.js
+			|       |-- jquery-1.7.1.min.js
+			|       |-- jquery.timeago.min.js
+			|       |-- less-1.2.1.min.js
+			|       |-- models.js
+			|       |-- onload.js
+			|       |-- outro.js
+			|       |-- routers.js
+			|       |-- underscore-min.js
+			|       `-- views.js
+			|-- templates
+			|   `-- index.html
+			`-- views.py
+		\end{lstlisting}
+
+\section{Code explanation}
+
+\paragraph{settings.py}
+his file holds application default settings where we define the database name and a pointer to the iris server. We include a random hash value, which is used to hash the password  for security. 
+\paragraph{models.py}
+The database is accessed in different files using models.py, where the database is explicitly declared.
+\paragraph{commons.py}
+This file defines codes that are used commonly throughout. get() and post() functions are explicitly defined here, to specify the methods for forms. 
+
+The encryptPassword(password), which takes password as its argument when a user logs in. This password is concatenated with the sha value defined in 'settings.py', which is again hashed and this value is passed onto the database.
+
+To add a contact, the user has to specify the email id of the contact he wishes to add. This contact is first checked if it is present in the database. If yes, then it checks if the contact already exists in the contact list of the user. If no, an error is shown. In case the contact already exists in the contact list, it informs the user that it already exists as a contact, else it adds it into the contact list.
+\paragraph{views.py}
+Here 'commons.py' is imported. This file defines all functions such as login, logout, register, adding a contact and sending messages. 
+\paragraph{main.py}
+This file specifies all the url for the functions defined in 'views.py' and also the port used is defined here. The port chosen for our chat system is 50000.
+
+
+\section{CONCLUSION}
+With this project, we developed a realtime chat system called FooChat.
+
+\end{document}
