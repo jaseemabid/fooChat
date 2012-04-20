@@ -33,7 +33,7 @@ fooChat.Views = {
 		template: $('#template-message').html(),
 		// Re-render the contact entry
 		render: function () {
-			$('#messageBox').append($(this.el).html(this.template.supplant(this.model.toJSON())));
+			$('div#messageBox').append($(this.el).html(this.template.supplant(this.model.toJSON())));
 			return this;
 		},
 		remove: function () {
@@ -137,7 +137,7 @@ fooChat.Views = {
 	}),
 	AddMessageView: B.View.extend({
 		tagName: "textarea",
-		className: "input-xlarge",
+		className: "input-xlarge span12",
 		id: "newMessage",
 		attributes: {
 			"rows": "3"
@@ -170,8 +170,9 @@ fooChat.Views = {
 			this.$el.val('');
 		},
 		render: function () {
+			console.log("addMessageBox view")
 			if (fooChat.activeUser.get('chat')) {
-				$("div#messageBox").html('').append($(this.el));
+				$("div#addMessageBox").html('').append($(this.el));
 			}
 			return this;
 		}
@@ -208,9 +209,9 @@ fooChat.Views = {
 			var view = new fooChat.Views.MessageView({
 				model: message
 			});
-			if (fooChat.messages.length > 5) {
-				fooChat.messages.at(0).destroy();
-			}
+//			if (fooChat.messages.length > 5) {
+//				fooChat.messages.at(0).destroy();
+//			}
 			$('#newMessage').before(view.render().el);
 			$('time.timeago').timeago();
 		},
