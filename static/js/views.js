@@ -33,7 +33,7 @@ fooChat.Views = {
 		template: $('#template-message').html(),
 		// Re-render the contact entry
 		render: function () {
-			$('div#messageBox').append($(this.el).html(this.template.supplant(this.model.toJSON())));
+			$('textarea#newMessage').before($(this.el).html(this.template.supplant(this.model.toJSON())));
 			return this;
 		},
 		remove: function () {
@@ -147,7 +147,7 @@ fooChat.Views = {
 		},
 		initialize: function () {
 			this.render();
-			fooChat.activeUser.bind('change:chat', this.render, this);
+			fooChat.activeUser.on('all', this.render,this);
 		},
 		addMessage: function (e) {
 			if (e.keyCode !== 13) {
@@ -170,9 +170,13 @@ fooChat.Views = {
 			this.$el.val('');
 		},
 		render: function () {
-			console.log("addMessageBox view")
+			console.log("addMessageBox view");
+			$("div#messageBox").html('').append($(this.el));
+			console.log("text area render");
 			if (fooChat.activeUser.get('chat')) {
-				$("div#addMessageBox").html('').append($(this.el));
+				$(this.el).show();
+			} else {
+				$(this.el).hide();
 			}
 			return this;
 		}
